@@ -1,1 +1,34 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.css";
+
+html, body { height: 100%; width: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.typeCard{
+    margin-top: 1.5%;
+    margin-left: 2%;
+    margin-right: 2%;
+    width: 98%;
+}
+.column{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.row{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+.block{
+    width: 50%;
+    height: 50%;
+}
+.hundred{
+    width: 100%;
+}
+.needSomeSpace{
+    padding: 15px;
+}
+.blackText{
+    color: black;
+}

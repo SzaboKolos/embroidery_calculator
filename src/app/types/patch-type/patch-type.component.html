@@ -1,0 +1,41 @@
+<main class="typeCard">
+<mat-card>
+    <article>
+        <mat-grid-list cols="2" rowHeight="2:1">
+            <mat-grid-tile>
+                <section class="column">
+                <mat-form-field appearance="fill">
+                    <mat-label>Rendelés darabszám</mat-label>
+                    <input matInput [formControl]="patchQuantity">
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Átmérő (cm)</mat-label>
+                    <input matInput [formControl]="patchDiameter">
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Öltések</mat-label>
+                    <input matInput [formControl]="patchStitches">
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Öltések (fancy cérna)</mat-label>
+                    <input matInput [formControl]="patchFancyStitches">
+                </mat-form-field>
+                </section>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <section>
+                    <mat-card>
+                        <img mat-card-image>
+                        <mat-card-content>
+                            <div></div>
+                        </mat-card-content>
+                </mat-card>
+                <button mat-button>Számol</button>
+            </section>
+        </mat-grid-tile>
+          </mat-grid-list>
+        
+        
+    </article>
+</mat-card>
+</main>
