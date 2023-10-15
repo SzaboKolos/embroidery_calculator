@@ -3,8 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { MainCalculatorPageComponent } from './main-calculator-page/main-calculator-page.component';
 
 const routes: Routes = [
-  { path: 'himzoArgep', component: MainCalculatorPageComponent },
-  { path: '**', redirectTo: 'himzoArgep' }
+  { path: 'himzoArgep', component: MainCalculatorPageComponent }
 ];
 
 @NgModule({
