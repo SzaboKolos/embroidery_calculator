@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import { CalculatorService } from '../calc-service/CalculatorService';
 import { SettingsPatchComponent } from '../settings/settings-patch/settings-patch.component';
-import { PricesDTO } from '../modules/prices-dto';
+import { PricesDTO } from '../models/prices-dto';
 
 @Component({
   selector: 'app-main-calculator-page',

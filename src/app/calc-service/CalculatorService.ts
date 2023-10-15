@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, firstValueFrom } from "rxjs";
-import { PricesDTO } from "../modules/prices-dto";
+import { PricesDTO } from "../models/prices-dto";
 @Injectable({
     providedIn: 'root',
   })
@@ -98,32 +98,32 @@ export class CalculatorService{
                 case (patchDiameter > 7 && patchDiameter <= 10): patchDiameterPrice = 600;                          break;
                 case (patchDiameter >= 10): patchDiameterPrice = 600 + (patchDiameter*10);                          break;
             }
-            price = ( await this.getBasePrice() + ((patchQuantity) * ( (patchDiameterPrice) + 
-                                    (patchStitches * await this.getNormalPrice() ) + 
+            price = ( await this.getBasePrice() + ((patchQuantity) * ( (patchDiameterPrice) +
+                                    (patchStitches * await this.getNormalPrice() ) +
                                     (patchStitchesSulky * await this.getSulkyPrice()) +
                                     (patchStitchesGolden * await this.getGoldPrice() ) +
                                     (patchStitchesTex * await this.getTexPrice() ) +
                                     (dueDateInDays <= 7 ? ((8-dueDateInDays) * 500) : 0))) );
-                                                                                 
+
         return price * (await this.getInternal() ? 1 : await this.getExternalMultiplier()) * await this.getMultiplier();
     }
-    
+
 
     public calculateShirtPrice(patchQuantity: number, patchDiameter: number, patchStitches: number, patchFancyStitches: number): number
     {
-    
+
         return 0;
     }
 
     public calculateSweaterPrice(patchQuantity: number, patchDiameter: number, patchStitches: number, patchFancyStitches: number): number
     {
-        
+
         return 0;
     }
 
     public calculateOtherPrice(patchQuantity: number, patchDiameter: number, patchStitches: number, patchFancyStitches: number): number
     {
-        
+
         return 0;
     }
 

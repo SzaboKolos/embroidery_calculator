@@ -30,6 +30,7 @@ import { SettingsPatchComponent } from './settings/settings-patch/settings-patch
 import {MatIconModule} from '@angular/material/icon';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CalculatorService } from './calc-service/CalculatorService';
+import { BasketComponent } from './basket/basket.component';
 
  
 
@@ -41,7 +42,8 @@ import { CalculatorService } from './calc-service/CalculatorService';
     ShirtTypeComponent,
     SweaterTypeComponent,
     OtherTypeComponent,
-    SettingsPatchComponent
+    SettingsPatchComponent,
+    BasketComponent
     
   ],
   imports: [

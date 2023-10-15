@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { CalculatorService } from 'src/app/calc-service/CalculatorService';
-import { PricesDTO } from 'src/app/modules/prices-dto';
+import { PricesDTO } from 'src/app/models/prices-dto';
 
 
 @Component({
@@ -37,7 +37,7 @@ export class SettingsPatchComponent {
   priceSulky = new FormControl(0, Validators.compose([ Validators.required, Validators.pattern("^[0-9]*$"), Validators.min(0)]));
   priceGold= new FormControl(0, Validators.compose([ Validators.required, Validators.pattern("^[0-9]*$"), Validators.min(0)]));
   priceTex= new FormControl(0, Validators.compose([ Validators.required, Validators.pattern("^[0-9]*$"), Validators.min(0)]));
- 
+
   priceBase = new FormControl(0, Validators.compose([ Validators.required,Validators.pattern("^[0-9]*$")]));
   priceMultiplier= new FormControl(1, Validators.compose([Validators.required, Validators.pattern("^[0-9]*$"), Validators.min(0.01)]));
   priceMultiplierExternal = new FormControl(1, Validators.compose([Validators.required, Validators.pattern("^[0-9]*$"), Validators.min(0.01)]));
@@ -55,7 +55,7 @@ export class SettingsPatchComponent {
 
         multiplier: this.priceMultiplier.value!,
         externalMultiplier: this.priceMultiplierExternal.value!
-      } 
+      }
       this.calculatorService.setPricesByDTO(pricesDTO);
     }
   }

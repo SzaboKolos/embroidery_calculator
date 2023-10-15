@@ -7,31 +7,48 @@
       <h1 style="color: 333333; margin-left: 2%;">Hímző árgép</h1>
       <h3 style="margin-left:1%" *ngIf="isBetaVersion">BETA</h3>
     </section>
-    <mat-card class="card">
-        <mat-card-content>
-          <mat-tab-group>
-            <mat-tab label="Folt"> <patch-type-page></patch-type-page> </mat-tab>
-            <mat-tab label="Póló"> <shirt-type-page></shirt-type-page> </mat-tab>
-            <mat-tab label="Pulcsi"> <sweater-type-page></sweater-type-page> </mat-tab>
-            <mat-tab label="Más.."> <other-type-page></other-type-page> </mat-tab>
-          </mat-tab-group>
-        </mat-card-content>
-        <mat-card-actions>
-          <mat-expansion-panel hideToggle
-          (opened)="settingsOpenState = true"
-          (closed)="settingsOpenState = false"
-          [ngClass]="{'hundred': settingsOpenState === true}">
+    <section class="bodyRow">
+      <article style="width: 66%">
+        <mat-card class="card">
+            <mat-card-content>
+              <mat-tab-group>
+                <mat-tab label="Folt"> <patch-type-page></patch-type-page> </mat-tab>
+                <mat-tab label="Póló"> <shirt-type-page></shirt-type-page> </mat-tab>
+                <mat-tab label="Pulcsi"> <sweater-type-page></sweater-type-page> </mat-tab>
+                <mat-tab label="Más.."> <other-type-page></other-type-page> </mat-tab>
+              </mat-tab-group>
+            </mat-card-content>
+            <mat-card-actions>
+              <mat-expansion-panel hideToggle
+              (opened)="settingsOpenState = true"
+              (closed)="settingsOpenState = false"
+              [ngClass]="{'hundred': settingsOpenState === true}">
 
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                <mat-icon aria-hidden="false" fontIcon="settings"></mat-icon>
-              </mat-panel-title>
-              <mat-panel-description>
-                Számítási beállítások
-              </mat-panel-description>
-            </mat-expansion-panel-header>
-            <settings-patch></settings-patch>
-          </mat-expansion-panel>
-        </mat-card-actions>
-    </mat-card>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    <mat-icon aria-hidden="false" fontIcon="settings"></mat-icon>
+                  </mat-panel-title>
+                  <mat-panel-description>
+                    Számítási beállítások
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+                <settings-patch></settings-patch>
+              </mat-expansion-panel>
+            </mat-card-actions>
+        </mat-card>
+      </article>
+      <article style="width: 34%">
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon aria-hidden="false" fontIcon="shopping_basket"></mat-icon>
+          </mat-panel-title>
+          <mat-panel-description>
+
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <basket-component></basket-component>
+      </mat-expansion-panel>
+      </article>
+    </section>
 </main>

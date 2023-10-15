@@ -45,6 +45,12 @@ body {
     flex-flow: row;
     border: none;
 }
+.bodyRow {
+  display: flex;
+  flex-direction: row;
+  flex-flow: row;
+  height: 100%;
+}
 
 .hundred {
     width: 100%;
