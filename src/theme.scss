@@ -1,0 +1,54 @@
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+$himzo-palette: (
+    50 : #eefbee,
+    100 : #d5f6d6,
+    200 : #b9f0ba,
+    300 : #9cea9e,
+    400 : #87e68a,
+    500 : #72e175,
+    600 : #6add6d,
+    700 : #5fd962,
+    800 : #55d558,
+    900 : #42cd45,
+    A100 : #ffffff,
+    A200 : #ecffed,
+    A400 : #b9ffbb,
+    A700 : #a0ffa2,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #000000,
+        800 : #000000,
+        900 : #000000,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$my-primary: mat.define-palette($himzo-palette, 500);
+$my-accent: mat.define-palette($himzo-palette, A200, A100, A400);
+
+// The "warn" palette is optional and defaults to red if not specified.
+$my-warn: mat.define-palette(mat.$red-palette);
+
+$himzo-theme: mat.define-dark-theme((
+ color: (
+   primary: $my-primary,
+   accent: $my-accent,
+   warn: $my-warn,
+ ),
+ typography: mat.define-typography-config(),
+ density: 0,
+));
+
+@include mat.all-component-themes($himzo-theme);

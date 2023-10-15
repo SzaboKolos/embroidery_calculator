@@ -20,7 +20,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatExpansionModule} from '@angular/material/expansion';
-
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
 import { PatchTypeComponent } from './types/patch-type/patch-type.component';
 import { ShirtTypeComponent } from './types/shirt-type/shirt-type.component';
@@ -29,6 +29,8 @@ import { OtherTypeComponent } from './types/other-type/other-type.component';
 import { SettingsPatchComponent } from './settings/settings-patch/settings-patch.component';
 import {MatIconModule} from '@angular/material/icon';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CalculatorService } from './calc-service/CalculatorService';
+
  
 
 @NgModule({
@@ -60,7 +62,8 @@ import { ReactiveFormsModule } from '@angular/forms';
           MatGridListModule,
           MatExpansionModule,
           MatIconModule,
-          ReactiveFormsModule
+          ReactiveFormsModule,
+          MatButtonToggleModule
   ],
   providers: [],
   bootstrap: [AppComponent]

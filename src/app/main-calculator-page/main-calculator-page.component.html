@@ -1,12 +1,11 @@
 <main class="container">
-    <article align="end">
-      
-      <div class="needSomeSpace">
-        <mat-slide-toggle #orderType name="internalOrder">
-          <p></p>
-        </mat-slide-toggle>
-      </div>
-    </article>
+    <section class="headerRow">
+      <mat-button-toggle-group name="orderType" aria-label="Rendelés típus" style="margin-bottom: 5px;">
+        <mat-button-toggle [value]="true" checked="true" (change)="onValChange($event.value)">Belsős</mat-button-toggle>
+        <mat-button-toggle [value]="false" (change)="onValChange($event.value)">Külsős</mat-button-toggle>
+      </mat-button-toggle-group>
+      <h1 style="color: 333333; margin-left: 2%;">Hímző árgép</h1>
+    </section>
     <mat-card class="card">
         <mat-card-content>
           <mat-tab-group>
