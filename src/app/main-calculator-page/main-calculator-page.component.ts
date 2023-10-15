@@ -10,6 +10,7 @@ import { PricesDTO } from '../modules/prices-dto';
   styleUrls: ['./main-calculator-page.component.scss'],
 })
 export class MainCalculatorPageComponent {
+  isBetaVersion = true;
   settingsOpenState = false;
   isInternalOrder = true;
 
@@ -22,12 +23,12 @@ export class MainCalculatorPageComponent {
         {
           price: 400,
           patchDiameterPrice: 400,
-  
+
           stitchPrice: 1,
           stitchSulkyPrice: 1,
           stitchGoldPrice: 8,
           stitchTexPrice: 8,
-  
+
           multiplier: 1,
           externalMultiplier: 1.35
         }
@@ -39,5 +40,5 @@ export class MainCalculatorPageComponent {
       this.isInternalOrder = val;
       this.calculatorService.setInternal(this.isInternalOrder);
     }
-   }   
+   }
 }

@@ -5,6 +5,7 @@
         <mat-button-toggle [value]="false" (change)="onValChange($event.value)">Külsős</mat-button-toggle>
       </mat-button-toggle-group>
       <h1 style="color: 333333; margin-left: 2%;">Hímző árgép</h1>
+      <h3 style="margin-left:1%" *ngIf="isBetaVersion">BETA</h3>
     </section>
     <mat-card class="card">
         <mat-card-content>
@@ -16,11 +17,11 @@
           </mat-tab-group>
         </mat-card-content>
         <mat-card-actions>
-          <mat-expansion-panel hideToggle 
+          <mat-expansion-panel hideToggle
           (opened)="settingsOpenState = true"
           (closed)="settingsOpenState = false"
           [ngClass]="{'hundred': settingsOpenState === true}">
-        
+
             <mat-expansion-panel-header>
               <mat-panel-title>
                 <mat-icon aria-hidden="false" fontIcon="settings"></mat-icon>
