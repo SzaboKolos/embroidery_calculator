@@ -33,20 +33,20 @@ export class SettingsPatchComponent {
   multiplierExt;
 
 
-  priceNormal = new FormControl(0, Validators.compose([ Validators.required, Validators.pattern("^[0-9]*$"), Validators.min(0)]));
-  priceSulky = new FormControl(0, Validators.compose([ Validators.required, Validators.pattern("^[0-9]*$"), Validators.min(0)]));
-  priceGold= new FormControl(0, Validators.compose([ Validators.required, Validators.pattern("^[0-9]*$"), Validators.min(0)]));
-  priceTex= new FormControl(0, Validators.compose([ Validators.required, Validators.pattern("^[0-9]*$"), Validators.min(0)]));
+  priceNormal = new FormControl(0, Validators.compose([ Validators.required, Validators.pattern("^[0-9]{1,2}([.][0-9]{1,2})?$"), Validators.min(0)]));
+  priceSulky = new FormControl(0, Validators.compose([ Validators.required, Validators.pattern("^[0-9]{1,2}([.][0-9]{1,2})?$"), Validators.min(0)]));
+  priceGold= new FormControl(0, Validators.compose([ Validators.required, Validators.pattern("^[0-9]{1,2}([.][0-9]{1,2})?$"), Validators.min(0)]));
+  priceTex= new FormControl(0, Validators.compose([ Validators.required, Validators.pattern("^[0-9]{1,2}([.][0-9]{1,2})?$"), Validators.min(0)]));
 
-  priceBase = new FormControl(0, Validators.compose([ Validators.required,Validators.pattern("^[0-9]*$")]));
-  priceMultiplier= new FormControl(1, Validators.compose([Validators.required, Validators.pattern("^[0-9]*$"), Validators.min(0.01)]));
-  priceMultiplierExternal = new FormControl(1, Validators.compose([Validators.required, Validators.pattern("^[0-9]*$"), Validators.min(0.01)]));
+  priceBase = new FormControl(0, Validators.compose([ Validators.required,Validators.pattern("^[0-9]{1,2}([.][0-9]{1,2})?$")]));
+  priceMultiplier= new FormControl(1, Validators.compose([Validators.required, Validators.pattern("^[0-9]{1,2}([.][0-9]{1,2})?$"), Validators.min(0.01)]));
+  priceMultiplierExternal = new FormControl(1, Validators.compose([Validators.required, Validators.pattern("^[0-9]{1,2}([.][0-9]{1,2})?$"), Validators.min(0.01)]));
 
   set(){
     if (this.priceBase.valid && this.priceMultiplier.valid && this.priceNormal.valid && this.priceSulky.valid && this.priceGold.valid && this.priceTex.valid){
       let pricesDTO: PricesDTO = {
         price: this.priceBase.value!,
-        patchDiameterPrice: 400,
+        patchDiameterPrice: 100,
 
         stitchPrice: this.priceNormal.value!,
         stitchSulkyPrice: this.priceSulky.value!,
@@ -62,8 +62,8 @@ export class SettingsPatchComponent {
   reset(){
     this.calculatorService.setPricesByDTO(
       {
-        price: 400,
-        patchDiameterPrice: 400,
+        price: 200,
+        patchDiameterPrice: 100,
 
         stitchPrice: 1,
         stitchSulkyPrice: 1,

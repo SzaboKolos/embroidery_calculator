@@ -1,54 +1,52 @@
-<main class="container">
+<main class="container" style="padding-right: unset;">
     <section class="headerRow">
       <mat-button-toggle-group name="orderType" aria-label="Rendelés típus" style="margin-bottom: 5px;">
         <mat-button-toggle [value]="true" checked="true" (change)="onValChange($event.value)">Belsős</mat-button-toggle>
         <mat-button-toggle [value]="false" (change)="onValChange($event.value)">Külsős</mat-button-toggle>
       </mat-button-toggle-group>
-      <h1 style="color: 333333; margin-left: 2%;">Hímző árgép</h1>
+      <h1 style="color: #333333; margin-left: 2%;">Hímző árgép</h1>
       <h3 style="margin-left:1%" *ngIf="isBetaVersion">BETA</h3>
     </section>
-    <section class="bodyRow">
-      <article style="width: 66%">
-        <mat-card class="card">
+    <mat-card class="card">
+      <section style="width: 100%" class="bodyRow">
+        <article style="width: 66%">
             <mat-card-content>
               <mat-tab-group>
-                <mat-tab label="Folt"> <patch-type-page></patch-type-page> </mat-tab>
+                <mat-tab label="Folt"> <patch-type-page [isInternal]="isInternalOrder"></patch-type-page> </mat-tab>
                 <mat-tab label="Póló"> <shirt-type-page></shirt-type-page> </mat-tab>
                 <mat-tab label="Pulcsi"> <sweater-type-page></sweater-type-page> </mat-tab>
                 <mat-tab label="Más.."> <other-type-page></other-type-page> </mat-tab>
               </mat-tab-group>
             </mat-card-content>
             <mat-card-actions>
-              <mat-expansion-panel hideToggle
-              (opened)="settingsOpenState = true"
-              (closed)="settingsOpenState = false"
-              [ngClass]="{'hundred': settingsOpenState === true}">
 
-                <mat-expansion-panel-header>
-                  <mat-panel-title>
-                    <mat-icon aria-hidden="false" fontIcon="settings"></mat-icon>
-                  </mat-panel-title>
-                  <mat-panel-description>
-                    Számítási beállítások
-                  </mat-panel-description>
-                </mat-expansion-panel-header>
-                <settings-patch></settings-patch>
-              </mat-expansion-panel>
             </mat-card-actions>
-        </mat-card>
-      </article>
-      <article style="width: 34%">
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            <mat-icon aria-hidden="false" fontIcon="shopping_basket"></mat-icon>
-          </mat-panel-title>
-          <mat-panel-description>
+          </article>
+          <article style="width: 34%; padding: 10px">
+            <mat-card class="basket">
+              <mat-icon aria-hidden="false" fontIcon="shopping_basket"></mat-icon>
+              <basket-component></basket-component>
+            </mat-card>
+          </article>
+      </section>
+    </mat-card>
+  <mat-expansion-panel hideToggle
+     (opened)="settingsOpenState = true"
+     (closed)="settingsOpenState = false"
+     [ngClass]="{'hundred': settingsOpenState === true}">
 
-          </mat-panel-description>
-        </mat-expansion-panel-header>
-        <basket-component></basket-component>
-      </mat-expansion-panel>
-      </article>
-    </section>
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      <mat-icon aria-hidden="false" fontIcon="settings"></mat-icon>
+    </mat-panel-title>
+    <mat-panel-description>
+      Számítási beállítások
+    </mat-panel-description>
+  </mat-expansion-panel-header>
+  <settings-patch></settings-patch>
+</mat-expansion-panel>
+
+  <div style="position: absolute; right: 10px; bottom: 5px;">
+    <p><span>{{this.version}}</span><span *ngIf="isBetaVersion">-BETA</span></p>
+  </div>
 </main>

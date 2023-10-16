@@ -15,6 +15,7 @@ body {
 .typeCard {
     margin-top: 1.5%;
     padding: 2%;
+    padding-right: 0;
     width: auto;
 }
 
@@ -26,11 +27,27 @@ body {
     min-width: fit-content;
     min-height: min-content;
 }
+.mat-mdc-card-content {
+  padding-left: 0;
+}
+.basket {
+  padding: 15px;
+  height: 614.719px;
+
+  background-color: rgb(77, 77, 77) !important;
+  color: #FFFFFF99;
+  scroll-behavior: smooth;
+
+}
 
 .column {
     display: flex;
     flex-direction: column;
     width: 100%;
+  .button, .mat-mdc-button, .mat-button, .btn {
+    margin-bottom: 22px;
+    height: 56px;
+  }
 }
 
 .row {
@@ -51,9 +68,13 @@ body {
   flex-flow: row;
   height: 100%;
 }
+.mat-divider, .mat-divider-horizontal {
+  margin-bottom: 2%;
+}
 
 .hundred {
     width: 100%;
+
 }
 
 .blackText {

@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import { CalculatorService } from '../calc-service/CalculatorService';
 import { SettingsPatchComponent } from '../settings/settings-patch/settings-patch.component';
 import { PricesDTO } from '../models/prices-dto';
+import {PatchTypeComponent} from "../types/patch-type/patch-type.component";
 
 @Component({
   selector: 'app-main-calculator-page',
@@ -11,8 +12,11 @@ import { PricesDTO } from '../models/prices-dto';
 })
 export class MainCalculatorPageComponent {
   isBetaVersion = true;
+  version = '1.1.0'
   settingsOpenState = false;
   isInternalOrder = true;
+
+  @ViewChild(PatchTypeComponent) patchTypeComponent!: PatchTypeComponent;
 
   constructor(private calculatorService: CalculatorService){
     if (localStorage.getItem('pricesDTO') != null){
@@ -21,8 +25,8 @@ export class MainCalculatorPageComponent {
       // setting initial values
       this.calculatorService.setPricesByDTO(
         {
-          price: 400,
-          patchDiameterPrice: 400,
+          price: 200,
+          patchDiameterPrice: 150,
 
           stitchPrice: 1,
           stitchSulkyPrice: 1,
@@ -39,6 +43,7 @@ export class MainCalculatorPageComponent {
     if (this.isInternalOrder != val) {
       this.isInternalOrder = val;
       this.calculatorService.setInternal(this.isInternalOrder);
+      this.patchTypeComponent.setHint(this.isInternalOrder);
     }
    }
 }

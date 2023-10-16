@@ -27,7 +27,7 @@
 
             <mat-form-field appearance="fill">
                 <mat-label>Arany cérna</mat-label>
-                <input matInput [formControl]="patchStitchesGolden">
+                <input matInput [formControl]="patchStitchesGold">
                 <span matTextSuffix>öltés</span>
             </mat-form-field>
 
@@ -45,15 +45,16 @@
                     <span matTextSuffix>Nap</span>
                 </mat-form-field>
                 <br>
-                <mat-form-field appearance="fill" style="width: 50%; padding-right: 2%;">
-                    <mat-label>Folt ára</mat-label>
-                    <input matInput readonly="true" [value]="price">
-                    <span matTextSuffix>Ft</span>
-                </mat-form-field>
+              <mat-form-field appearance="fill" style="width: 50%; padding-right: 2%;">
+                <mat-label>Egy folt ára</mat-label>
+                <input matInput readonly="true" [value]="pricePerPatch.toString()">
+                <span matTextSuffix>Ft</span>
+              </mat-form-field>
                 <mat-form-field appearance="fill" style="width: 50%; padding-left: 2%;">
-                    <mat-label>Egy folt ára</mat-label>
-                    <input matInput readonly="true" [value]="pricePerPatch">
+                    <mat-label>Összesített ár</mat-label>
+                    <input matInput readonly="true" [value]="price.toString()">
                     <span matTextSuffix>Ft</span>
+                  <mat-hint>Az összesített ár tartalmaz <span style="font-weight: bold">{{ this.basePrice }} Ft</span> tervezési költséget.</mat-hint>
                 </mat-form-field>
             </div>
             <!--<img mat-card-image>-->

@@ -31,8 +31,10 @@ import {MatIconModule} from '@angular/material/icon';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CalculatorService } from './calc-service/CalculatorService';
 import { BasketComponent } from './basket/basket.component';
+import { NumbersOnlyDirective } from './directives/numbers-only.directive';
+import {MatDividerModule} from "@angular/material/divider";
 
- 
+
 
 @NgModule({
   declarations: [
@@ -43,30 +45,32 @@ import { BasketComponent } from './basket/basket.component';
     SweaterTypeComponent,
     OtherTypeComponent,
     SettingsPatchComponent,
-    BasketComponent
-    
+    BasketComponent,
+    NumbersOnlyDirective
+
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatAutocompleteModule,
-     MatCheckboxModule,
-      MatButtonModule, 
-      MatFormFieldModule,
-       MatDatepickerModule,
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatAutocompleteModule,
+        MatCheckboxModule,
+        MatButtonModule,
+        MatFormFieldModule,
+        MatDatepickerModule,
         MatRadioModule,
-         MatInputModule,
-          MatSelectModule, 
-          MatSlideToggleModule, 
-          MatCardModule,
-          MatTabsModule,
-          MatGridListModule,
-          MatExpansionModule,
-          MatIconModule,
-          ReactiveFormsModule,
-          MatButtonToggleModule
-  ],
+        MatInputModule,
+        MatSelectModule,
+        MatSlideToggleModule,
+        MatCardModule,
+        MatTabsModule,
+        MatGridListModule,
+        MatExpansionModule,
+        MatIconModule,
+        ReactiveFormsModule,
+        MatButtonToggleModule,
+        MatDividerModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

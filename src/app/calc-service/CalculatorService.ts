@@ -1,14 +1,15 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, firstValueFrom } from "rxjs";
 import { PricesDTO } from "../models/prices-dto";
+import {OrderDto} from "../models/order-dto";
 @Injectable({
     providedIn: 'root',
   })
 export class CalculatorService{
     isInternal$: BehaviorSubject<boolean> = new BehaviorSubject(true);
 
-    basePrice$: BehaviorSubject<number> = new BehaviorSubject(400);
-    basePatchDiameterPrice$: BehaviorSubject<number> = new BehaviorSubject(400);
+    basePrice$: BehaviorSubject<number> = new BehaviorSubject(200);
+    basePatchDiameterPrice$: BehaviorSubject<number> = new BehaviorSubject(150);
     baseStitchPrice$: BehaviorSubject<number> = new BehaviorSubject(1);
     baseStitchSulkyPrice$: BehaviorSubject<number> = new BehaviorSubject(1);
     baseStitchGoldPrice$: BehaviorSubject<number> = new BehaviorSubject(8);
@@ -87,25 +88,23 @@ export class CalculatorService{
         return result;
     }
 
-    public async calculatePatchPrice(isInternalOrder: boolean, patchQuantity: number = 0, patchDiameter: number = 0, patchStitches: number = 0, patchStitchesSulky: number = 0, patchStitchesGolden: number = 0, patchStitchesTex: number = 0, dueDateInDays: number): Promise<number>
+    public async calculatePatchPrice(order: OrderDto): Promise<number>
     {
-        let patchDiameterPrice = 0;
-        await this.getPatchDiameter().then(val => {patchDiameterPrice = val});
-        let price = 0;
-            switch(true){
-                case (patchDiameter <= 5): await this.getPatchDiameter().then(val => {patchDiameterPrice = val});   break;
-                case (patchDiameter > 5 && patchDiameter <= 7): patchDiameterPrice = 500;                           break;
-                case (patchDiameter > 7 && patchDiameter <= 10): patchDiameterPrice = 600;                          break;
-                case (patchDiameter >= 10): patchDiameterPrice = 600 + (patchDiameter*10);                          break;
-            }
-            price = ( await this.getBasePrice() + ((patchQuantity) * ( (patchDiameterPrice) +
-                                    (patchStitches * await this.getNormalPrice() ) +
-                                    (patchStitchesSulky * await this.getSulkyPrice()) +
-                                    (patchStitchesGolden * await this.getGoldPrice() ) +
-                                    (patchStitchesTex * await this.getTexPrice() ) +
-                                    (dueDateInDays <= 7 ? ((8-dueDateInDays) * 500) : 0))) );
+      let patchDiameterPrice = 0;
+      await this.getPatchDiameter().then(val => {patchDiameterPrice = val});
+      switch(true){
+          case (order.patchDiameter <= 5): await this.getPatchDiameter().then(val => {patchDiameterPrice = val});                                                         break;
+          case (order.patchDiameter > 5 && order.patchDiameter <= 10): await this.getPatchDiameter().then( val => {patchDiameterPrice = val*3});                          break;
+          case (order.patchDiameter >= 10): await this.getPatchDiameter().then( val => {patchDiameterPrice = val*3 + (order.patchDiameter*10)});                          break;
+      }
+      let price = ( ((order.patchQuantity) * ( (patchDiameterPrice) +
+                              (order.patchStitches * await this.getNormalPrice() ) +
+                              (order.patchStitchesSulky * await this.getSulkyPrice()) +
+                              (order.patchStitchesGolden * await this.getGoldPrice() ) +
+                              (order.patchStitchesTex * await this.getTexPrice() ) +
+                              (order.dueDateInDays <= 7 ? ((8-order.dueDateInDays) * 500) : 0))) );
 
-        return price * (await this.getInternal() ? 1 : await this.getExternalMultiplier()) * await this.getMultiplier();
+      return price * (await this.getInternal() ? 1 : await this.getExternalMultiplier()) * await this.getMultiplier();
     }
 
 
