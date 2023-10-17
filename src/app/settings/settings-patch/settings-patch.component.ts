@@ -33,14 +33,14 @@ export class SettingsPatchComponent {
   multiplierExt;
 
 
-  priceNormal = new FormControl(0, Validators.compose([ Validators.required, Validators.pattern("^[0-9]{1,2}([.][0-9]{1,2})?$"), Validators.min(0)]));
-  priceSulky = new FormControl(0, Validators.compose([ Validators.required, Validators.pattern("^[0-9]{1,2}([.][0-9]{1,2})?$"), Validators.min(0)]));
-  priceGold= new FormControl(0, Validators.compose([ Validators.required, Validators.pattern("^[0-9]{1,2}([.][0-9]{1,2})?$"), Validators.min(0)]));
-  priceTex= new FormControl(0, Validators.compose([ Validators.required, Validators.pattern("^[0-9]{1,2}([.][0-9]{1,2})?$"), Validators.min(0)]));
+  priceNormal = new FormControl(0, Validators.compose([ Validators.required, Validators.pattern("^[\.0-9]*$"), Validators.min(0)]));
+  priceSulky = new FormControl(0, Validators.compose([ Validators.required, Validators.pattern("^[\.0-9]*$"), Validators.min(0)]));
+  priceGold= new FormControl(0, Validators.compose([ Validators.required, Validators.pattern("^[\.0-9]*$"), Validators.min(0)]));
+  priceTex= new FormControl(0, Validators.compose([ Validators.required, Validators.pattern("^[\.0-9]*$"), Validators.min(0)]));
 
-  priceBase = new FormControl(0, Validators.compose([ Validators.required,Validators.pattern("^[0-9]{1,2}([.][0-9]{1,2})?$")]));
-  priceMultiplier= new FormControl(1, Validators.compose([Validators.required, Validators.pattern("^[0-9]{1,2}([.][0-9]{1,2})?$"), Validators.min(0.01)]));
-  priceMultiplierExternal = new FormControl(1, Validators.compose([Validators.required, Validators.pattern("^[0-9]{1,2}([.][0-9]{1,2})?$"), Validators.min(0.01)]));
+  priceBase = new FormControl(0, Validators.compose([ Validators.required,Validators.pattern("^[\.0-9]*$")]));
+  priceMultiplier= new FormControl(1, Validators.compose([Validators.required, Validators.pattern("^[\.0-9]*$"), Validators.min(0.01)]));
+  priceMultiplierExternal = new FormControl(1.35, Validators.compose([Validators.required, Validators.pattern("^[\.0-9]*$"), Validators.min(0.01)]));
 
   set(){
     if (this.priceBase.valid && this.priceMultiplier.valid && this.priceNormal.valid && this.priceSulky.valid && this.priceGold.valid && this.priceTex.valid){
@@ -60,19 +60,27 @@ export class SettingsPatchComponent {
     }
   }
   reset(){
-    this.calculatorService.setPricesByDTO(
-      {
-        price: 200,
-        patchDiameterPrice: 100,
+    let pricesDTO: PricesDTO = {
+      price: 200,
+      patchDiameterPrice: 100,
 
-        stitchPrice: 1,
-        stitchSulkyPrice: 1,
-        stitchGoldPrice: 8,
-        stitchTexPrice: 8,
+      stitchPrice: 1,
+      stitchSulkyPrice: 1,
+      stitchGoldPrice: 8,
+      stitchTexPrice: 8,
 
-        multiplier: 1,
-        externalMultiplier: 1.35
-      }
-    );
+      multiplier: 1,
+      externalMultiplier: 1.35
+    }
+    this.priceNormal.setValue(pricesDTO.stitchPrice);
+    this.priceSulky.setValue(pricesDTO.stitchSulkyPrice);
+    this.priceGold.setValue(pricesDTO.stitchGoldPrice);
+    this.priceTex.setValue(pricesDTO.stitchTexPrice);
+
+    this.priceBase.setValue(pricesDTO.price);
+    this.priceMultiplier.setValue(pricesDTO.multiplier);
+    this.priceMultiplierExternal.setValue(pricesDTO.externalMultiplier);
+
+    this.calculatorService.setPricesByDTO(pricesDTO);
   }
 }

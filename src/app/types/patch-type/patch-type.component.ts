@@ -15,7 +15,7 @@ export class PatchTypeComponent implements OnInit{
   basePrice: number = 1;
 
   patchQuantity = new FormControl(0,Validators.compose([ Validators.required, Validators.pattern("^[0-9]*$"), Validators.min(1)]));
-  patchDiameter= new FormControl(0, Validators.compose([ Validators.required, Validators.pattern("^[0-9]{1,2}([.][0-9]{1,2})?$"), Validators.min(1)]));
+  patchDiameter= new FormControl(0, Validators.compose([ Validators.required, Validators.pattern("^[\.0-9]*$"), Validators.min(1)]));
   patchStitches= new FormControl(0, Validators.compose([Validators.pattern("^[0-9]*$"), Validators.min(0)]));
   patchStitchesSulky= new FormControl(0, Validators.compose([Validators.pattern("^[0-9]*$"), Validators.min(0)]));
   patchStitchesGold= new FormControl(0, Validators.compose([Validators.pattern("^[0-9]*$"), Validators.min(0)]));

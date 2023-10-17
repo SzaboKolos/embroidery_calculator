@@ -12,7 +12,7 @@ import {PatchTypeComponent} from "../types/patch-type/patch-type.component";
 })
 export class MainCalculatorPageComponent {
   isBetaVersion = true;
-  version = '1.1.0'
+  version = '1.2.0'
   settingsOpenState = false;
   isInternalOrder = true;
 
