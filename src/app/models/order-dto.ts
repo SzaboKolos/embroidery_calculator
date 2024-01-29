@@ -1,11 +1,11 @@
 export interface OrderDto {
   isInternalOrder: boolean,
-  patchQuantity: number,
-  patchDiameter: number,
-  patchStitches: number,
-  patchStitchesSulky: number,
-  patchStitchesGolden: number,
-  patchStitchesTex: number,
+  quantity: number,
+  diameter: number,
+  stitches: number,
+  stitchesSulky: number,
+  stitchesGolden: number,
+  stitchesTex: number,
   dueDateInDays: number
 }
 

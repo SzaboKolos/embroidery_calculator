@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MainCalculatorPageComponent } from './main-calculator-page/main-calculator-page.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -29,10 +29,11 @@ import { OtherTypeComponent } from './types/other-type/other-type.component';
 import { SettingsPatchComponent } from './settings/settings-patch/settings-patch.component';
 import {MatIconModule} from '@angular/material/icon';
 import { ReactiveFormsModule } from '@angular/forms';
-import { CalculatorService } from './calc-service/CalculatorService';
+import { CalculatorService } from './services/calculator-service';
 import { BasketComponent } from './basket/basket.component';
 import { NumbersOnlyDirective } from './directives/numbers-only.directive';
 import {MatDividerModule} from "@angular/material/divider";
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 
 
@@ -69,7 +70,8 @@ import {MatDividerModule} from "@angular/material/divider";
         MatIconModule,
         ReactiveFormsModule,
         MatButtonToggleModule,
-        MatDividerModule
+        MatDividerModule,
+        MatTooltipModule
     ],
   providers: [],
   bootstrap: [AppComponent]

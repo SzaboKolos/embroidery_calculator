@@ -1,3 +1,66 @@
-<main class="typeCard">
-  <h3> NOT IMPLEMENTED YET (WILL BE IMPLEMENTED IN VERSION: 2.3.2-BETA) </h3>
+<main class="typeCard container">
+  <article class="row">
+    <section class="column">
+      <mat-form-field appearance="fill">
+        <mat-label>Minta darabszám</mat-label>
+        <input matInput [formControl]="embroideryQuantity">
+        <span matTextSuffix>db</span>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Normál cérna</mat-label>
+        <input matInput [formControl]="stitches">
+        <span matTextSuffix>öltés</span>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Sulky cérna</mat-label>
+        <input matInput [formControl]="stitchesSulky">
+        <span matTextSuffix>öltés</span>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Arany cérna</mat-label>
+        <input matInput [formControl]="stitchesGold">
+        <span matTextSuffix>öltés</span>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Texlight cérna</mat-label>
+        <input matInput [formControl]="stitchesTex">
+        <span matTextSuffix>öltés</span>
+      </mat-form-field>
+    </section>
+    <section class="column">
+      <div class="output">
+        <mat-form-field appearance="fill" style="width: 50%; padding-right: 2%;" floatLabel="always">
+          <mat-label>Határidő</mat-label>
+          <input matInput [formControl]="dueDate">
+          <span matTextSuffix>Nap</span>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill" style="width: 50%; padding-right: 2%;">
+          <mat-label>Egy folt ára</mat-label>
+          <input matInput readonly="true" [value]="pricePerPatch.toString()">
+          <span matTextSuffix>Ft</span>
+        </mat-form-field>
+        <mat-form-field appearance="fill" style="width: 50%; padding-left: 2%;">
+          <mat-label>Összesített ár</mat-label>
+          <input matInput readonly="true" [value]="price.toString()">
+          <span matTextSuffix>Ft</span>
+          <mat-hint>Az összesített ár tartalmaz <span style="font-weight: bold">{{ this.basePriceHint }} Ft</span> tervezési költséget.</mat-hint>
+        </mat-form-field>
+      </div>
+      <!--<img mat-card-image>-->
+      <div style="width: 50%; padding-right: 2%;"></div>
+      <mat-form-field appearance="fill" style="width: 50%; padding-right: 2%;">
+        <mat-label>Elnevezés</mat-label>
+        <input matInput [formControl]="name" maxlength="30">
+      </mat-form-field>
+      <div class="submitButtons">
+        <button type="submit" mat-raised-button class="btn" (click)="calculate()" style="margin-right: 1%;">Számol</button>
+        <button type="submit" mat-raised-button class="btn" (click)="addToBasket()" style="margin-left: 1%;">Kosárhoz ad</button>
+      </div>
+    </section>
+  </article>
 </main>

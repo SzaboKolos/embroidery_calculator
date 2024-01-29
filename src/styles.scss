@@ -56,6 +56,12 @@ body {
     flex-flow: row;
     width: 50%;
 }
+.submitButtons {
+  display: flex;
+  flex-direction: row;
+  flex-flow: row;
+  flex-wrap: wrap;
+}
 .headerRow {
     display: flex;
     flex-direction: row;
@@ -100,4 +106,20 @@ body {
 }
 .mat-mdc-button {
     background-color: #555555;
+}
+.btn {
+  width: 49%;
+}
+html {
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 0;  /* Remove scrollbar space */
+  background: transparent;  /* Optional: just make scrollbar invisible */
+}
+/* Optional: show position indicator in red */
+::-webkit-scrollbar-thumb {
+
 }

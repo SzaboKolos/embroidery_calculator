@@ -1,9 +1,14 @@
 import {Component, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
-import { CalculatorService } from '../calc-service/CalculatorService';
+import { CalculatorService } from '../services/calculator-service';
 import { SettingsPatchComponent } from '../settings/settings-patch/settings-patch.component';
 import { PricesDTO } from '../models/prices-dto';
 import {PatchTypeComponent} from "../types/patch-type/patch-type.component";
+import {SweaterTypeComponent} from "../types/sweater-type/sweater-type.component";
+import {ShirtTypeComponent} from "../types/shirt-type/shirt-type.component";
+import {BasketService} from "../services/basket-service";
+import {BasketComponent} from "../basket/basket.component";
+import {BasketItem} from "../models/basket-item";
 
 @Component({
   selector: 'app-main-calculator-page',
@@ -12,13 +17,17 @@ import {PatchTypeComponent} from "../types/patch-type/patch-type.component";
 })
 export class MainCalculatorPageComponent {
   isBetaVersion = true;
-  version = '1.2.0'
+  version = '3.0.7'
   settingsOpenState = false;
   isInternalOrder = true;
 
   @ViewChild(PatchTypeComponent) patchTypeComponent!: PatchTypeComponent;
+  @ViewChild(ShirtTypeComponent) shirtTypeComponent!: ShirtTypeComponent;
+  @ViewChild(SweaterTypeComponent) sweaterTypeComponent!: SweaterTypeComponent;
+  @ViewChild(BasketComponent) basket!: BasketComponent;
 
-  constructor(private calculatorService: CalculatorService){
+  constructor(private calculatorService: CalculatorService,
+              private basketService: BasketService){
     if (localStorage.getItem('pricesDTO') != null){
       this.calculatorService.setPricesByDTO(JSON.parse(localStorage.getItem('pricesDTO')!));
     } else {
@@ -43,7 +52,9 @@ export class MainCalculatorPageComponent {
     if (this.isInternalOrder != val) {
       this.isInternalOrder = val;
       this.calculatorService.setInternal(this.isInternalOrder);
-      this.patchTypeComponent.setHint(this.isInternalOrder);
     }
-   }
+  }
+  addToBasket(event: BasketItem) {
+    this.basket.addToBasket(event);
+  }
 }

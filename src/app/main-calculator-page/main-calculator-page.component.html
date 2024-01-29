@@ -12,9 +12,9 @@
         <article style="width: 66%">
             <mat-card-content>
               <mat-tab-group>
-                <mat-tab label="Folt"> <patch-type-page [isInternal]="isInternalOrder"></patch-type-page> </mat-tab>
-                <mat-tab label="Póló"> <shirt-type-page></shirt-type-page> </mat-tab>
-                <mat-tab label="Pulcsi"> <sweater-type-page></sweater-type-page> </mat-tab>
+                <mat-tab label="Folt"> <patch-type-page [isInternal]="isInternalOrder" (addedToBasket)="addToBasket($event)"></patch-type-page> </mat-tab>
+                <mat-tab label="Póló"> <shirt-type-page [isInternal]="isInternalOrder"(addedToBasket)="addToBasket($event)"></shirt-type-page> </mat-tab>
+                <mat-tab label="Pulcsi"> <sweater-type-page [isInternal]="isInternalOrder"(addedToBasket)="addToBasket($event)"></sweater-type-page> </mat-tab>
                 <mat-tab label="Más.."> <other-type-page></other-type-page> </mat-tab>
               </mat-tab-group>
             </mat-card-content>
@@ -33,7 +33,8 @@
   <mat-expansion-panel hideToggle
      (opened)="settingsOpenState = true"
      (closed)="settingsOpenState = false"
-     [ngClass]="{'hundred': settingsOpenState === true}">
+     [ngClass]="{'hundred': settingsOpenState === true}"
+  style="margin-top: 0.5%; width: 66%;">
 
   <mat-expansion-panel-header>
     <mat-panel-title>
@@ -46,6 +47,8 @@
   <settings-patch></settings-patch>
 </mat-expansion-panel>
 
+
+  <div *ngIf="settingsOpenState" style="height: 200px"></div>
   <div style="position: absolute; right: 10px; bottom: 5px;">
     <p><span>{{this.version}}</span><span *ngIf="isBetaVersion">-BETA</span></p>
   </div>

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { CalculatorService } from 'src/app/calc-service/CalculatorService';
+import { CalculatorService } from 'src/app/services/calculator-service';
 import { PricesDTO } from 'src/app/models/prices-dto';
 
 
@@ -10,6 +10,16 @@ import { PricesDTO } from 'src/app/models/prices-dto';
   styleUrls: ['./settings-patch.component.scss']
 })
 export class SettingsPatchComponent {
+  price;
+  patchDiameterPrice;
+  stitchPrice;
+  stitchSulkyPrice;
+  stitchGoldPrice;
+  stitchTexPrice;
+
+  multiplier;
+  multiplierExt;
+
   constructor(private calculatorService: CalculatorService)
   {
       this.price = calculatorService.getBasePrice();
@@ -22,23 +32,13 @@ export class SettingsPatchComponent {
       this.multiplier = calculatorService.getMultiplier()
       this.multiplierExt = calculatorService.getExternalMultiplier();
   }
-  price;
-  patchDiameterPrice;
-  stitchPrice;
-  stitchSulkyPrice;
-  stitchGoldPrice;
-  stitchTexPrice;
 
-  multiplier;
-  multiplierExt;
+  priceNormal = new FormControl(1, Validators.compose([ Validators.required, Validators.pattern("^[\.0-9]*$"), Validators.min(0)]));
+  priceSulky = new FormControl(1, Validators.compose([ Validators.required, Validators.pattern("^[\.0-9]*$"), Validators.min(0)]));
+  priceGold= new FormControl(8, Validators.compose([ Validators.required, Validators.pattern("^[\.0-9]*$"), Validators.min(0)]));
+  priceTex= new FormControl(8, Validators.compose([ Validators.required, Validators.pattern("^[\.0-9]*$"), Validators.min(0)]));
 
-
-  priceNormal = new FormControl(0, Validators.compose([ Validators.required, Validators.pattern("^[\.0-9]*$"), Validators.min(0)]));
-  priceSulky = new FormControl(0, Validators.compose([ Validators.required, Validators.pattern("^[\.0-9]*$"), Validators.min(0)]));
-  priceGold= new FormControl(0, Validators.compose([ Validators.required, Validators.pattern("^[\.0-9]*$"), Validators.min(0)]));
-  priceTex= new FormControl(0, Validators.compose([ Validators.required, Validators.pattern("^[\.0-9]*$"), Validators.min(0)]));
-
-  priceBase = new FormControl(0, Validators.compose([ Validators.required,Validators.pattern("^[\.0-9]*$")]));
+  priceBase = new FormControl(200, Validators.compose([ Validators.required,Validators.pattern("^[\.0-9]*$")]));
   priceMultiplier= new FormControl(1, Validators.compose([Validators.required, Validators.pattern("^[\.0-9]*$"), Validators.min(0.01)]));
   priceMultiplierExternal = new FormControl(1.35, Validators.compose([Validators.required, Validators.pattern("^[\.0-9]*$"), Validators.min(0.01)]));
 
@@ -83,4 +83,5 @@ export class SettingsPatchComponent {
 
     this.calculatorService.setPricesByDTO(pricesDTO);
   }
+
 }

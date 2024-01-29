@@ -39,7 +39,7 @@
         </section>
         <section class="column">
             <div class="output">
-                <mat-form-field appearance="fill" style="width: 50%; padding-right: 2%;">
+                <mat-form-field appearance="fill" style="width: 50%; padding-right: 2%;" floatLabel="always">
                     <mat-label>Határidő</mat-label>
                     <input matInput [formControl]="dueDate">
                     <span matTextSuffix>Nap</span>
@@ -54,11 +54,19 @@
                     <mat-label>Összesített ár</mat-label>
                     <input matInput readonly="true" [value]="price.toString()">
                     <span matTextSuffix>Ft</span>
-                  <mat-hint>Az összesített ár tartalmaz <span style="font-weight: bold">{{ this.basePrice }} Ft</span> tervezési költséget.</mat-hint>
+                  <mat-hint>Az összesített ár tartalmaz <span style="font-weight: bold">{{ this.basePriceHint }} Ft</span> tervezési költséget.</mat-hint>
                 </mat-form-field>
             </div>
             <!--<img mat-card-image>-->
-            <button mat-raised-button class="btn" (click)="calculate()">Számol</button>
+            <div style="width: 50%; padding-right: 2%;"></div>
+            <mat-form-field appearance="fill" style="width: 50%; padding-right: 2%;">
+              <mat-label>Elnevezés</mat-label>
+              <input matInput [formControl]="name" maxlength="30">
+            </mat-form-field>
+            <div class="submitButtons">
+              <button type="submit" mat-raised-button class="btn" (click)="calculate()" style="margin-right: 1%;">Számol</button>
+              <button type="submit" mat-raised-button class="btn" (click)="addToBasket()" style="margin-left: 1%;">Kosárhoz ad</button>
+            </div>
         </section>
     </article>
 </main>

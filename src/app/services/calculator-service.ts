@@ -93,25 +93,32 @@ export class CalculatorService{
       let patchDiameterPrice = 0;
       await this.getPatchDiameter().then(val => {patchDiameterPrice = val});
       switch(true){
-          case (order.patchDiameter <= 5): await this.getPatchDiameter().then(val => {patchDiameterPrice = val});                                                         break;
-          case (order.patchDiameter > 5 && order.patchDiameter <= 10): await this.getPatchDiameter().then( val => {patchDiameterPrice = val*3});                          break;
-          case (order.patchDiameter >= 10): await this.getPatchDiameter().then( val => {patchDiameterPrice = val*3 + (order.patchDiameter*10)});                          break;
+          case (order.diameter <= 5): await this.getPatchDiameter().then(val => {patchDiameterPrice = val});                                                         break;
+          case (order.diameter > 5 && order.diameter <= 10): await this.getPatchDiameter().then( val => {patchDiameterPrice = val*3});                          break;
+          case (order.diameter >= 10): await this.getPatchDiameter().then( val => {patchDiameterPrice = val*3 + (order.diameter*10)});                          break;
       }
-      let price = ( ((order.patchQuantity) * ( (patchDiameterPrice) +
-                              (order.patchStitches * await this.getNormalPrice() ) +
-                              (order.patchStitchesSulky * await this.getSulkyPrice()) +
-                              (order.patchStitchesGolden * await this.getGoldPrice() ) +
-                              (order.patchStitchesTex * await this.getTexPrice() ) +
+      let price = ( ((order.quantity) * ( (patchDiameterPrice) +
+                              (order.stitches * await this.getNormalPrice() ) +
+                              (order.stitchesSulky * await this.getSulkyPrice()) +
+                              (order.stitchesGolden * await this.getGoldPrice() ) +
+                              (order.stitchesTex * await this.getTexPrice() ) +
                               (order.dueDateInDays <= 7 ? ((8-order.dueDateInDays) * 500) : 0))) );
 
       return price * (await this.getInternal() ? 1 : await this.getExternalMultiplier()) * await this.getMultiplier();
     }
 
 
-    public calculateShirtPrice(patchQuantity: number, patchDiameter: number, patchStitches: number, patchFancyStitches: number): number
+    public async calculateShirtPrice(order: OrderDto): Promise<number>
     {
 
-        return 0;
+      let price = ( ((order.quantity) *
+        (order.stitches * await this.getNormalPrice() ) +
+        (order.stitchesSulky * await this.getSulkyPrice()) +
+        (order.stitchesGolden * await this.getGoldPrice() ) +
+        (order.stitchesTex * await this.getTexPrice() ) +
+        (order.dueDateInDays <= 7 ? ((8-order.dueDateInDays) * 500) : 0)) );
+
+      return price * (await this.getInternal() ? 1 : await this.getExternalMultiplier()) * await this.getMultiplier();
     }
 
     public calculateSweaterPrice(patchQuantity: number, patchDiameter: number, patchStitches: number, patchFancyStitches: number): number

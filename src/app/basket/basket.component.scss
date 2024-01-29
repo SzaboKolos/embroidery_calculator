@@ -1,0 +1,13 @@
+.basket-item{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.typeIcon {
+  transform: scale(2);
+}
+.typeIconSVG {
+  height: 48px;
+  width: 48px;
+  color: #FFFFFF99;
+}
