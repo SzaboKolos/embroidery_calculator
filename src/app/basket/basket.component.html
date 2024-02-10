@@ -1,0 +1,49 @@
+<main class="typeCard" style="height: 100%;">
+  <mat-divider style="margin-bottom: 5px"></mat-divider>
+  <article style="height: 480px;  overflow-y: scroll;" cdkScrollable>
+    <mat-card *ngFor="let item of basket" class="rounded-2" style="margin-bottom: 5px">
+      <mat-card-content style="display: flex; flex-direction: column; justify-content: space-between; margin-bottom: -10px">
+        <section style="display: flex; flex-direction: row; padding-bottom: 13px; justify-content: space-between;">
+          <div style="display: flex; flex-direction: row;">
+            <mat-icon *ngIf="item.type === 1" class="typeIcon" matTooltip="Folt">yard</mat-icon>
+            <mat-icon *ngIf="item.type === 2" class="typeIcon" matTooltip="Póló">layers</mat-icon>
+            <mat-icon *ngIf="item.type === 3" class="typeIcon" matTooltip="Pulcsi">layers</mat-icon>
+            <div style="padding-left: 16px">
+              <h6>{{item.name}}</h6>
+            </div>
+          </div>
+          <div>
+            <mat-icon *ngIf="item.internal" matTooltip="Belsős rendelés">school</mat-icon>
+            <mat-icon *ngIf="!item.internal" matTooltip="Külsös rendelés">public</mat-icon>
+          </div>
+        </section>
+        <section style="display: flex; flex-direction: row; justify-content: space-between; overflow: hidden;">
+          <div>
+            <h6>Darabszám: <b>{{item.quantity}}</b>db</h6>
+          </div>
+        </section>
+        <section style="display: flex; flex-direction: row; justify-content: space-between; overflow: hidden;">
+          <div style="overflow: hidden;">
+            <h6>Darabár:    <b>{{item.pricePerPatch}}</b>Ft</h6>
+          </div>
+          <div style="padding-left: 8px">
+            <h6>Szumma: <b>{{item.sumPrice}}</b>Ft</h6>
+          </div>
+        </section>
+
+      </mat-card-content>
+    </mat-card>
+  </article>
+  <mat-divider style="margin-bottom: 10px; margin-top: 5px;"></mat-divider>
+  <article style="display: flex; flex-direction: row;">
+    <div style="height: 20%">
+      <button mat-raised-button type="button" (click)="empty()">Kosár kiürítése</button>
+    </div>
+    <div style="display: flex;
+                flex-direction: row;
+                align-items: flex-end;
+                padding-left: 16px">
+      <h6> Kosár szumma: <b>{{sumSumPrice}}</b> Ft</h6>
+    </div>
+  </article>
+</main>

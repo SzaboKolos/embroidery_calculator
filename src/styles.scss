@@ -1,34 +1,125 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.css";
 
-html, body { height: 100%; width: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-.typeCard{
-    margin-top: 1.5%;
-    margin-left: 2%;
-    margin-right: 2%;
-    width: 98%;
+html,
+body {
+    height: fit-content;
+    width: 100%;
 }
-.column{
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.typeCard {
+    margin-top: 1.5%;
+    padding: 2%;
+    padding-right: 0;
+    width: auto;
+}
+
+.container[_ngcontent-tcb-c37] {
+    margin-top: 5%;
+}
+
+.card {
+    min-width: fit-content;
+    min-height: min-content;
+}
+.mat-mdc-card-content {
+  padding-left: 0;
+}
+.basket {
+  padding: 15px;
+  height: 614.719px;
+
+  background-color: rgb(77, 77, 77) !important;
+  color: #FFFFFF99;
+  scroll-behavior: smooth;
+
+}
+
+.column {
     display: flex;
     flex-direction: column;
     width: 100%;
+  .button, .mat-mdc-button, .mat-button, .btn {
+    margin-bottom: 22px;
+    height: 56px;
+  }
 }
-.row{
-    width: 100%;
+
+.row {
     display: flex;
     flex-direction: row;
-}
-.block{
+    flex-flow: row;
     width: 50%;
-    height: 50%;
 }
-.hundred{
+.submitButtons {
+  display: flex;
+  flex-direction: row;
+  flex-flow: row;
+  flex-wrap: wrap;
+}
+.headerRow {
+    display: flex;
+    flex-direction: row;
+    flex-flow: row;
+    border: none;
+}
+.bodyRow {
+  display: flex;
+  flex-direction: row;
+  flex-flow: row;
+  height: 100%;
+}
+.mat-divider, .mat-divider-horizontal {
+  margin-bottom: 2%;
+}
+
+.hundred {
     width: 100%;
+
 }
-.needSomeSpace{
-    padding: 15px;
-}
-.blackText{
+
+.blackText {
     color: black;
+}
+
+.output {
+    width: 100%;
+    height: 100%;
+    background-color: #424242;
+}
+
+[class*='ng-tns-c'] {
+    color: #FFFFFF99;
+}
+
+.mat-button-toggle-checked.mat-button-toggle-appearance-standard {
+    background-color: #555555;
+    color: rgba($color: #72e175, $alpha: 1) !important;
+}
+.mdc-button__label {
+    color: #72e175
+}
+.mat-mdc-button {
+    background-color: #555555;
+}
+.btn {
+  width: 49%;
+}
+html {
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 0;  /* Remove scrollbar space */
+  background: transparent;  /* Optional: just make scrollbar invisible */
+}
+/* Optional: show position indicator in red */
+::-webkit-scrollbar-thumb {
+
 }

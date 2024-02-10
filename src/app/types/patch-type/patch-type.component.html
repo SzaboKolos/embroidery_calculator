@@ -1,41 +1,72 @@
-<main class="typeCard">
-<mat-card>
-    <article>
-        <mat-grid-list cols="2" rowHeight="2:1">
-            <mat-grid-tile>
-                <section class="column">
-                <mat-form-field appearance="fill">
-                    <mat-label>Rendelés darabszám</mat-label>
-                    <input matInput [formControl]="patchQuantity">
+<main class="typeCard container">
+    <article class="row">
+        <section class="column">
+            <mat-form-field appearance="fill">
+                <mat-label>Rendelés darabszám</mat-label>
+                <input matInput [formControl]="patchQuantity">
+                <span matTextSuffix>db</span>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Átmérő</mat-label>
+                <input matInput [formControl]="patchDiameter">
+                <span matTextSuffix>cm</span>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Normál cérna</mat-label>
+                <input matInput [formControl]="patchStitches">
+                <span matTextSuffix>öltés</span>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Sulky cérna</mat-label>
+                <input matInput [formControl]="patchStitchesSulky">
+                <span matTextSuffix>öltés</span>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Arany cérna</mat-label>
+                <input matInput [formControl]="patchStitchesGold">
+                <span matTextSuffix>öltés</span>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Texlight cérna</mat-label>
+                <input matInput [formControl]="patchStitchesTex">
+                <span matTextSuffix>öltés</span>
+            </mat-form-field>
+        </section>
+        <section class="column">
+            <div class="output">
+                <mat-form-field appearance="fill" style="width: 50%; padding-right: 2%;" floatLabel="always">
+                    <mat-label>Határidő</mat-label>
+                    <input matInput [formControl]="dueDate">
+                    <span matTextSuffix>Nap</span>
                 </mat-form-field>
-                <mat-form-field appearance="fill">
-                    <mat-label>Átmérő (cm)</mat-label>
-                    <input matInput [formControl]="patchDiameter">
+                <br>
+              <mat-form-field appearance="fill" style="width: 50%; padding-right: 2%;">
+                <mat-label>Egy folt ára</mat-label>
+                <input matInput readonly="true" [value]="pricePerPatch.toString()">
+                <span matTextSuffix>Ft</span>
+              </mat-form-field>
+                <mat-form-field appearance="fill" style="width: 50%; padding-left: 2%;">
+                    <mat-label>Összesített ár</mat-label>
+                    <input matInput readonly="true" [value]="price.toString()">
+                    <span matTextSuffix>Ft</span>
+                  <mat-hint>Az összesített ár tartalmaz <span style="font-weight: bold">{{ this.basePriceHint }} Ft</span> tervezési költséget.</mat-hint>
                 </mat-form-field>
-                <mat-form-field appearance="fill">
-                    <mat-label>Öltések</mat-label>
-                    <input matInput [formControl]="patchStitches">
-                </mat-form-field>
-                <mat-form-field appearance="fill">
-                    <mat-label>Öltések (fancy cérna)</mat-label>
-                    <input matInput [formControl]="patchFancyStitches">
-                </mat-form-field>
-                </section>
-            </mat-grid-tile>
-            <mat-grid-tile>
-                <section>
-                    <mat-card>
-                        <img mat-card-image>
-                        <mat-card-content>
-                            <div></div>
-                        </mat-card-content>
-                </mat-card>
-                <button mat-button>Számol</button>
-            </section>
-        </mat-grid-tile>
-          </mat-grid-list>
-        
-        
+            </div>
+            <!--<img mat-card-image>-->
+            <div style="width: 50%; padding-right: 2%;"></div>
+            <mat-form-field appearance="fill" style="width: 50%; padding-right: 2%;">
+              <mat-label>Elnevezés</mat-label>
+              <input matInput [formControl]="name" maxlength="30">
+            </mat-form-field>
+            <div class="submitButtons">
+              <button type="submit" mat-raised-button class="btn" (click)="calculate()" style="margin-right: 1%;">Számol</button>
+              <button type="submit" mat-raised-button class="btn" (click)="addToBasket()" style="margin-left: 1%;">Kosárhoz ad</button>
+            </div>
+        </section>
     </article>
-</mat-card>
 </main>

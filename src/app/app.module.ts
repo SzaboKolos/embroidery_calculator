@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MainCalculatorPageComponent } from './main-calculator-page/main-calculator-page.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -20,7 +20,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatExpansionModule} from '@angular/material/expansion';
-
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
 import { PatchTypeComponent } from './types/patch-type/patch-type.component';
 import { ShirtTypeComponent } from './types/shirt-type/shirt-type.component';
@@ -29,7 +29,13 @@ import { OtherTypeComponent } from './types/other-type/other-type.component';
 import { SettingsPatchComponent } from './settings/settings-patch/settings-patch.component';
 import {MatIconModule} from '@angular/material/icon';
 import { ReactiveFormsModule } from '@angular/forms';
- 
+import { CalculatorService } from './services/calculator-service';
+import { BasketComponent } from './basket/basket.component';
+import { NumbersOnlyDirective } from './directives/numbers-only.directive';
+import {MatDividerModule} from "@angular/material/divider";
+import {MatTooltipModule} from "@angular/material/tooltip";
+
+
 
 @NgModule({
   declarations: [
@@ -39,29 +45,34 @@ import { ReactiveFormsModule } from '@angular/forms';
     ShirtTypeComponent,
     SweaterTypeComponent,
     OtherTypeComponent,
-    SettingsPatchComponent
-    
+    SettingsPatchComponent,
+    BasketComponent,
+    NumbersOnlyDirective
+
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatAutocompleteModule,
-     MatCheckboxModule,
-      MatButtonModule, 
-      MatFormFieldModule,
-       MatDatepickerModule,
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatAutocompleteModule,
+        MatCheckboxModule,
+        MatButtonModule,
+        MatFormFieldModule,
+        MatDatepickerModule,
         MatRadioModule,
-         MatInputModule,
-          MatSelectModule, 
-          MatSlideToggleModule, 
-          MatCardModule,
-          MatTabsModule,
-          MatGridListModule,
-          MatExpansionModule,
-          MatIconModule,
-          ReactiveFormsModule
-  ],
+        MatInputModule,
+        MatSelectModule,
+        MatSlideToggleModule,
+        MatCardModule,
+        MatTabsModule,
+        MatGridListModule,
+        MatExpansionModule,
+        MatIconModule,
+        ReactiveFormsModule,
+        MatButtonToggleModule,
+        MatDividerModule,
+        MatTooltipModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
