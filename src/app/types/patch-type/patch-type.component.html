@@ -37,6 +37,7 @@
                 <span matTextSuffix>öltés</span>
             </mat-form-field>
         </section>
+        <mat-divider class="d-block d-lg-none"></mat-divider>
         <section class="col-12 col-lg-6 column right">
             <div class="output">
                 <mat-form-field appearance="fill" style="width: 50%; padding-right: 2%;" floatLabel="always">
@@ -61,7 +62,7 @@
             <div style="width: 50%; padding-right: 2%;"></div>
             <mat-form-field appearance="fill" style="width: 50%; padding-right: 2%;" class="d-none d-lg-block">
               <mat-label>Elnevezés</mat-label>
-              <input matInput [formControl]="name" maxlength="30">
+              <input matInput [formControl]="name" maxlength="28">
             </mat-form-field>
             <div class="submitButtons">
               <button type="submit" mat-raised-button class="btn" (click)="calculate()" style="margin-right: 1%;">Számol</button>

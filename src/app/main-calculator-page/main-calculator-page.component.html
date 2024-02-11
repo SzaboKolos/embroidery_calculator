@@ -13,8 +13,8 @@
             <mat-card-content>
               <mat-tab-group>
                 <mat-tab label="Folt"> <patch-type-page [isInternal]="isInternalOrder" (addedToBasket)="addToBasket($event)"></patch-type-page> </mat-tab>
-                <mat-tab label="Póló"> <shirt-type-page [isInternal]="isInternalOrder" (addedToBasket)="addToBasket($event)"></shirt-type-page> </mat-tab>
-                <mat-tab label="Pulcsi"> <sweater-type-page [isInternal]="isInternalOrder" (addedToBasket)="addToBasket($event)"></sweater-type-page> </mat-tab>
+                <mat-tab label="Póló/Pulcsi"> <shirt-type-page [isInternal]="isInternalOrder" (addedToBasket)="addToBasket($event)"></shirt-type-page> </mat-tab>
+                <mat-tab label="Sapka"> <sweater-type-page [isInternal]="isInternalOrder" (addedToBasket)="addToBasket($event)"></sweater-type-page> </mat-tab>
                 <mat-tab label="Más.."> <other-type-page></other-type-page> </mat-tab>
               </mat-tab-group>
             </mat-card-content>
