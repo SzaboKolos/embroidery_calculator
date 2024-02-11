@@ -15,8 +15,8 @@ body {
 .typeCard {
     margin-top: 1.5%;
     padding: 2%;
-    padding-right: 0;
-    width: auto;
+    padding-right: 1%;
+    //width: auto;
 }
 
 .container[_ngcontent-tcb-c37] {
@@ -24,7 +24,7 @@ body {
 }
 
 .card {
-    min-width: fit-content;
+    //min-width: fit-content;
     min-height: min-content;
 }
 .mat-mdc-card-content {
@@ -33,28 +33,33 @@ body {
 .basket {
   padding: 15px;
   height: 614.719px;
+  min-width: 420px;
 
   background-color: rgb(77, 77, 77) !important;
   color: #FFFFFF99;
   scroll-behavior: smooth;
-
 }
 
 .column {
     display: flex;
     flex-direction: column;
-    width: 100%;
+
   .button, .mat-mdc-button, .mat-button, .btn {
     margin-bottom: 22px;
     height: 56px;
   }
 }
+.column.left {
+  padding-right: 1%;
+}
+.column.right {
+  padding-left: 1%;
+  padding-left: 1%;
+}
 
-.row {
+.input-row, .row {
     display: flex;
-    flex-direction: row;
-    flex-flow: row;
-    width: 50%;
+    flex-flow: row wrap;
 }
 .submitButtons {
   display: flex;
@@ -80,7 +85,6 @@ body {
 
 .hundred {
     width: 100%;
-
 }
 
 .blackText {
@@ -88,8 +92,6 @@ body {
 }
 
 .output {
-    width: 100%;
-    height: 100%;
     background-color: #424242;
 }
 
@@ -122,4 +124,12 @@ html {
 /* Optional: show position indicator in red */
 ::-webkit-scrollbar-thumb {
 
+  @media (max-width: 768px) {
+    .container{
+      padding: 0;
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+      overflow-x: hidden;
+    }
+  }
 }
