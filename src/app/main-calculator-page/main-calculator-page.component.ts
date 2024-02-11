@@ -17,7 +17,7 @@ import {BasketItem} from "../models/basket-item";
 })
 export class MainCalculatorPageComponent {
   isBetaVersion = true;
-  version = '3.0.7'
+  version = '3.1.2'
   settingsOpenState = false;
   isInternalOrder = true;
 
