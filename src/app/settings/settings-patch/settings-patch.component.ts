@@ -11,7 +11,7 @@ import { PricesDTO } from 'src/app/models/prices-dto';
 })
 export class SettingsPatchComponent {
   price;
-  patchDiameterPrice;
+  broughtPrice;
   stitchPrice;
   stitchSulkyPrice;
   stitchGoldPrice;
@@ -22,15 +22,15 @@ export class SettingsPatchComponent {
 
   constructor(private calculatorService: CalculatorService)
   {
-      this.price = calculatorService.getBasePrice();
-      this.patchDiameterPrice = calculatorService.getPatchDiameter()
+      this.price = CalculatorService.getBasePrice();
+      this.broughtPrice = CalculatorService.getBaseBroughtPrice();
 
-      this.stitchPrice = calculatorService.getNormalPrice()
-      this.stitchSulkyPrice = calculatorService.getSulkyPrice()
-      this.stitchGoldPrice = calculatorService.getGoldPrice()
-      this.stitchTexPrice  = calculatorService.getTexPrice()
-      this.multiplier = calculatorService.getMultiplier()
-      this.multiplierExt = calculatorService.getExternalMultiplier();
+      this.stitchPrice = CalculatorService.getNormalPrice()
+      this.stitchSulkyPrice = CalculatorService.getSulkyPrice()
+      this.stitchGoldPrice = CalculatorService.getGoldPrice()
+      this.stitchTexPrice  = CalculatorService.getTexPrice()
+      this.multiplier = CalculatorService.getMultiplier()
+      this.multiplierExt = CalculatorService.getExternalMultiplier();
   }
 
   priceNormal = new FormControl(1, Validators.compose([ Validators.required, Validators.pattern("^[\.0-9]*$"), Validators.min(0)]));
@@ -39,14 +39,15 @@ export class SettingsPatchComponent {
   priceTex= new FormControl(8, Validators.compose([ Validators.required, Validators.pattern("^[\.0-9]*$"), Validators.min(0)]));
 
   priceBase = new FormControl(200, Validators.compose([ Validators.required,Validators.pattern("^[\.0-9]*$")]));
+  priceBroughtBase = new FormControl(500, Validators.compose([ Validators.required,Validators.pattern("^[\.0-9]*$")]));
   priceMultiplier= new FormControl(1, Validators.compose([Validators.required, Validators.pattern("^[\.0-9]*$"), Validators.min(0.01)]));
-  priceMultiplierExternal = new FormControl(1.35, Validators.compose([Validators.required, Validators.pattern("^[\.0-9]*$"), Validators.min(0.01)]));
+  priceMultiplierExternal = new FormControl(2, Validators.compose([Validators.required, Validators.pattern("^[\.0-9]*$"), Validators.min(0.01)]));
 
   set(){
-    if (this.priceBase.valid && this.priceMultiplier.valid && this.priceNormal.valid && this.priceSulky.valid && this.priceGold.valid && this.priceTex.valid){
+    if (this.priceBase.valid && this.priceBroughtBase.valid && this.priceMultiplier.valid && this.priceNormal.valid && this.priceSulky.valid && this.priceGold.valid && this.priceTex.valid){
       let pricesDTO: PricesDTO = {
         price: this.priceBase.value!,
-        patchDiameterPrice: 100,
+        broughtPrice: this.priceBroughtBase.value!,
 
         stitchPrice: this.priceNormal.value!,
         stitchSulkyPrice: this.priceSulky.value!,
@@ -56,13 +57,13 @@ export class SettingsPatchComponent {
         multiplier: this.priceMultiplier.value!,
         externalMultiplier: this.priceMultiplierExternal.value!
       }
-      this.calculatorService.setPricesByDTO(pricesDTO);
+      CalculatorService.setPricesByDTO(pricesDTO);
     }
   }
   reset(){
     let pricesDTO: PricesDTO = {
       price: 200,
-      patchDiameterPrice: 100,
+      broughtPrice: 500,
 
       stitchPrice: 1,
       stitchSulkyPrice: 1,
@@ -70,7 +71,7 @@ export class SettingsPatchComponent {
       stitchTexPrice: 8,
 
       multiplier: 1,
-      externalMultiplier: 1.35
+      externalMultiplier: 2
     }
     this.priceNormal.setValue(pricesDTO.stitchPrice);
     this.priceSulky.setValue(pricesDTO.stitchSulkyPrice);
@@ -78,10 +79,11 @@ export class SettingsPatchComponent {
     this.priceTex.setValue(pricesDTO.stitchTexPrice);
 
     this.priceBase.setValue(pricesDTO.price);
+    this.priceBroughtBase.setValue(pricesDTO.broughtPrice);
     this.priceMultiplier.setValue(pricesDTO.multiplier);
     this.priceMultiplierExternal.setValue(pricesDTO.externalMultiplier);
 
-    this.calculatorService.setPricesByDTO(pricesDTO);
+    CalculatorService.setPricesByDTO(pricesDTO);
   }
 
 }

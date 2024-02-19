@@ -1,10 +1,7 @@
 import {Component, ViewChild} from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
 import { CalculatorService } from '../services/calculator-service';
-import { SettingsPatchComponent } from '../settings/settings-patch/settings-patch.component';
-import { PricesDTO } from '../models/prices-dto';
 import {PatchTypeComponent} from "../types/patch-type/patch-type.component";
-import {SweaterTypeComponent} from "../types/sweater-type/sweater-type.component";
+import {BeanieTypeComponent} from "../types/beanie-type/beanie-type.component";
 import {ShirtTypeComponent} from "../types/shirt-type/shirt-type.component";
 import {BasketService} from "../services/basket-service";
 import {BasketComponent} from "../basket/basket.component";
@@ -17,25 +14,25 @@ import {BasketItem} from "../models/basket-item";
 })
 export class MainCalculatorPageComponent {
   isBetaVersion = true;
-  version = '3.1.4'
+  version = '3.2.1'
   settingsOpenState = false;
-  isInternalOrder = true;
+  category = 0;
 
   @ViewChild(PatchTypeComponent) patchTypeComponent!: PatchTypeComponent;
   @ViewChild(ShirtTypeComponent) shirtTypeComponent!: ShirtTypeComponent;
-  @ViewChild(SweaterTypeComponent) sweaterTypeComponent!: SweaterTypeComponent;
+  @ViewChild(BeanieTypeComponent) sweaterTypeComponent!: BeanieTypeComponent;
   @ViewChild(BasketComponent) basket!: BasketComponent;
 
   constructor(private calculatorService: CalculatorService,
               private basketService: BasketService){
     if (localStorage.getItem('pricesDTO') != null){
-      this.calculatorService.setPricesByDTO(JSON.parse(localStorage.getItem('pricesDTO')!));
+      CalculatorService.setPricesByDTO(JSON.parse(localStorage.getItem('pricesDTO')!));
     } else {
       // setting initial values
-      this.calculatorService.setPricesByDTO(
+      CalculatorService.setPricesByDTO(
         {
           price: 200,
-          patchDiameterPrice: 150,
+          broughtPrice: 500,
 
           stitchPrice: 1,
           stitchSulkyPrice: 1,
@@ -48,13 +45,16 @@ export class MainCalculatorPageComponent {
       );
     }
   }
-  onValChange(val: boolean) {
-    if (this.isInternalOrder != val) {
-      this.isInternalOrder = val;
-      this.calculatorService.setInternal(this.isInternalOrder);
+  onValChange(val: number) {
+    if (this.category != val) {
+      this.category = val;
+      CalculatorService.setCategory(this.category);
     }
   }
   addToBasket(event: BasketItem) {
     this.basket.addToBasket(event);
+  }
+  openBasketDialog() {
+
   }
 }

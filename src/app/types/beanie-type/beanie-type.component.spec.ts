@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SweaterTypeComponent } from './sweater-type.component';
+import { BeanieTypeComponent } from './beanie-type.component';
 
 describe('SweaterTypeComponent', () => {
-  let component: SweaterTypeComponent;
-  let fixture: ComponentFixture<SweaterTypeComponent>;
+  let component: BeanieTypeComponent;
+  let fixture: ComponentFixture<BeanieTypeComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SweaterTypeComponent ]
+      declarations: [ BeanieTypeComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(SweaterTypeComponent);
+    fixture = TestBed.createComponent(BeanieTypeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

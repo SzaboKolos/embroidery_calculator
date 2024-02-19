@@ -1,7 +1,6 @@
 export interface OrderDto {
-  isInternalOrder: boolean,
+  category: number,
   quantity: number,
-  diameter: number,
   stitches: number,
   stitchesSulky: number,
   stitchesGolden: number,

@@ -1,136 +1,201 @@
-import { Injectable } from "@angular/core";
-import { BehaviorSubject, firstValueFrom } from "rxjs";
-import { PricesDTO } from "../models/prices-dto";
+import {Injectable} from "@angular/core";
+import {BehaviorSubject, firstValueFrom} from "rxjs";
+import {PricesDTO} from "../models/prices-dto";
 import {OrderDto} from "../models/order-dto";
+
 @Injectable({
-    providedIn: 'root',
-  })
-export class CalculatorService{
-    isInternal$: BehaviorSubject<boolean> = new BehaviorSubject(true);
+  providedIn: 'root',
+})
+export class CalculatorService {
+  // Category
+  static category$: BehaviorSubject<number> = new BehaviorSubject(0);
+  static category = CalculatorService.category$.asObservable();
+  // Base Prices
+  static basePrice$: BehaviorSubject<number> = new BehaviorSubject(200);
+  static basePrice = CalculatorService.basePrice$.asObservable();
 
-    basePrice$: BehaviorSubject<number> = new BehaviorSubject(200);
-    basePatchDiameterPrice$: BehaviorSubject<number> = new BehaviorSubject(150);
-    baseStitchPrice$: BehaviorSubject<number> = new BehaviorSubject(1);
-    baseStitchSulkyPrice$: BehaviorSubject<number> = new BehaviorSubject(1);
-    baseStitchGoldPrice$: BehaviorSubject<number> = new BehaviorSubject(8);
-    baseStitchTexPrice$: BehaviorSubject<number> = new BehaviorSubject(8);
+  static baseBroughtPrice$: BehaviorSubject<number> = new BehaviorSubject(500);
+  static baseBroughtPrice = CalculatorService.baseBroughtPrice$.asObservable();
+  // Stitch Prices
+  static baseStitchPrice$: BehaviorSubject<number> = new BehaviorSubject(1);
+  static baseStitchPrice = CalculatorService.baseStitchPrice$.asObservable();
 
-    multiplier$: BehaviorSubject<number> = new BehaviorSubject(1);
-    externalMultiplier$: BehaviorSubject<number> = new BehaviorSubject(1.35);
+  static baseStitchSulkyPrice$: BehaviorSubject<number> = new BehaviorSubject(1);
+  static baseStitchSulkyPrice = CalculatorService.baseStitchSulkyPrice$.asObservable();
 
-    isInternal = this.isInternal$.asObservable();
-    basePrice = this.basePrice$.asObservable();
-    basePatchDiameterPrice= this.basePatchDiameterPrice$.asObservable();
-    baseStitchPrice= this.baseStitchPrice$.asObservable();
-    baseStitchSulkyPrice = this.baseStitchSulkyPrice$.asObservable();
-    baseStitchGoldPrice = this.baseStitchGoldPrice$.asObservable();
-    baseStitchTexPrice = this.baseStitchTexPrice$.asObservable();
+  static baseStitchGoldPrice$: BehaviorSubject<number> = new BehaviorSubject(8);
+  static baseStitchGoldPrice = CalculatorService.baseStitchGoldPrice$.asObservable();
 
-    multiplier = this.multiplier$.asObservable();
-    externalMultiplier = this.externalMultiplier$.asObservable();
+  static baseStitchTexPrice$: BehaviorSubject<number> = new BehaviorSubject(8);
+  static baseStitchTexPrice = CalculatorService.baseStitchTexPrice$.asObservable();
+  // Multipliers
+  static multiplier$: BehaviorSubject<number> = new BehaviorSubject(1);
+  static multiplier = CalculatorService.multiplier$.asObservable();
 
-    setInternal(bool: boolean){
-        this.isInternal$.next(bool);
+  static externalMultiplier$: BehaviorSubject<number> = new BehaviorSubject(2);
+  static externalMultiplier = CalculatorService.externalMultiplier$.asObservable();
+
+  static setCategory(val: number) {
+    CalculatorService.category$.next(val);
+  }
+
+  static setPricesByDTO(pricesDTO: PricesDTO) {
+    CalculatorService.basePrice$.next(pricesDTO.price);
+    CalculatorService.baseBroughtPrice$.next(pricesDTO.broughtPrice);
+
+    CalculatorService.baseStitchPrice$.next(pricesDTO.stitchPrice);
+    CalculatorService.baseStitchSulkyPrice$.next(pricesDTO.stitchSulkyPrice);
+    CalculatorService.baseStitchGoldPrice$.next(pricesDTO.stitchGoldPrice);
+    CalculatorService.baseStitchTexPrice$.next(pricesDTO.stitchTexPrice);
+
+    CalculatorService.multiplier$.next(pricesDTO.multiplier);
+    CalculatorService.externalMultiplier$.next(pricesDTO.externalMultiplier);
+
+    // saves prices to localstorage for later use
+    localStorage.setItem('pricesDTO', JSON.stringify(pricesDTO));
+  }
+
+  static async getCategory(): Promise<number> {
+    return await firstValueFrom(this.category).then((value: number) => {
+      return value;
+    });
+  }
+
+  static async getMultiplier(): Promise<number> {
+    return await firstValueFrom(this.multiplier).then((num: number) => {
+      return num;
+    });
+  }
+
+  static async getBasePrice(): Promise<number> {
+    return await firstValueFrom(this.basePrice).then((price: number) => {
+      return price;
+    });
+  }
+
+  static async getBaseBroughtPrice(): Promise<number> {
+    return await firstValueFrom(this.baseBroughtPrice).then((price: number) => {
+      return price;
+    });
+  }
+  static async getNormalPrice(): Promise<number> {
+    return await firstValueFrom(this.baseStitchPrice).then((price: number) => {
+      return price / 100;
+    });
+  }
+
+  static async getSulkyPrice(): Promise<number> {
+    return await firstValueFrom(this.baseStitchSulkyPrice).then((price: number) => {
+      return price / 100;
+    });
+  }
+
+  static async getGoldPrice(): Promise<number> {
+    return await firstValueFrom(this.baseStitchGoldPrice).then((price: number) => {
+      return price / 100;
+    });
+  }
+
+  static async getTexPrice(): Promise<number> {
+    return await firstValueFrom(this.baseStitchTexPrice).then((price: number) => {
+      return price / 100;
+    });
+  }
+
+  static async getExternalMultiplier(): Promise<number> {
+    return await firstValueFrom(this.externalMultiplier).then((price: number) => {
+      return price;
+    });
+  }
+
+  public static async calculatePatchPrice(order: OrderDto): Promise<number> {
+    const basePrice = await CalculatorService.getBasePrice(); //def: 200
+    const normalPrice = await CalculatorService.getNormalPrice(); //def: 0.01
+    const sulkyPrice = await CalculatorService.getSulkyPrice(); //def: 0.01
+    const goldPrice = await CalculatorService.getGoldPrice(); //def: 0.08
+    const texPrice = await CalculatorService.getTexPrice(); //def: 0.08
+    const multiplier = await CalculatorService.getMultiplier(); //def: 1
+    const externalMultiplier = await CalculatorService.getExternalMultiplier(); //def: 2
+
+    let category = await CalculatorService.getCategory();
+
+    let categoryMultiplier = 1;
+    if (category === 1){
+      categoryMultiplier = 1.5;
+    } else if (category === 2) {
+      categoryMultiplier = externalMultiplier;
+    }
+    return (order.quantity * (
+      basePrice +
+      (order.stitches * normalPrice) +
+      (order.stitchesSulky * sulkyPrice) +
+      (order.stitchesGolden * goldPrice) +
+      (order.stitchesTex * texPrice)
+    )) * categoryMultiplier * multiplier;
+  }
+
+
+  public static async calculateShirtPrice(order: OrderDto): Promise<number> {
+    const baseBroughtPrice = await CalculatorService.getBaseBroughtPrice(); //def: 500
+    const normalPrice = await CalculatorService.getNormalPrice(); //def: 0.01
+    const sulkyPrice = await CalculatorService.getSulkyPrice(); //def: 0.01
+    const goldPrice = await CalculatorService.getGoldPrice(); //def: 0.08
+    const texPrice = await CalculatorService.getTexPrice(); //def: 0.08
+    const multiplier = await CalculatorService.getMultiplier(); //def: 1
+    const externalMultiplier = await CalculatorService.getExternalMultiplier(); //def: 2
+
+    let category = await CalculatorService.getCategory();
+    let categoryMultiplier = 1;
+    if (category === 1){
+      categoryMultiplier = 1.5;
+    } else if (category === 2) {
+      categoryMultiplier = externalMultiplier;
     }
 
-    setPricesByDTO(pricesDTO: PricesDTO){
-        this.basePrice$.next(pricesDTO.price);
-        this.basePatchDiameterPrice$.next(pricesDTO.patchDiameterPrice);
+    return (order.quantity * (
+      baseBroughtPrice +
+      (order.stitches * normalPrice) +
+      (order.stitchesSulky * sulkyPrice) +
+      (order.stitchesGolden * goldPrice) +
+      (order.stitchesTex * texPrice)
+    )) * categoryMultiplier * multiplier;
+  }
 
-        this.baseStitchPrice$.next(pricesDTO.stitchPrice);
-        this.baseStitchSulkyPrice$.next(pricesDTO.stitchSulkyPrice);
-        this.baseStitchGoldPrice$.next(pricesDTO.stitchGoldPrice);
-        this.baseStitchTexPrice$.next(pricesDTO.stitchTexPrice);
+  public static async calculateBeaniePrice(order: OrderDto): Promise<number> {
+    const baseBroughtPrice = await CalculatorService.getBaseBroughtPrice(); //def: 500
+    const normalPrice = await CalculatorService.getNormalPrice(); //def: 0.01
+    const sulkyPrice = await CalculatorService.getSulkyPrice(); //def: 0.01
+    const goldPrice = await CalculatorService.getGoldPrice(); //def: 0.08
+    const texPrice = await CalculatorService.getTexPrice(); //def: 0.08
+    const multiplier = await CalculatorService.getMultiplier(); //def: 1
+    const externalMultiplier = await CalculatorService.getExternalMultiplier(); //def: 2
 
-        this.multiplier$.next(pricesDTO.multiplier);
-        this.externalMultiplier$.next(pricesDTO.externalMultiplier);
-
-        // saves prices to localstorage for later use
-        localStorage.setItem('pricesDTO', JSON.stringify(pricesDTO));
+    let category = await CalculatorService.getCategory();
+    let categoryMultiplier = 1;
+    if (category === 1){
+      categoryMultiplier = 1.5;
+    } else if (category === 2) {
+      categoryMultiplier = externalMultiplier;
     }
 
-    async getInternal(): Promise<boolean>{
-        const result = await firstValueFrom(this.isInternal).then((bool: boolean)=> {return bool;})
-        return result;
-    }
-    async getMultiplier(): Promise<number>{
-        const result = await firstValueFrom(this.multiplier).then((num: number)=> {return num;})
-        return result;
-    }
-    async getBasePrice(): Promise<number>{
-        const result = await firstValueFrom(this.basePrice).then((price: number)=> {return price;})
-        return result;
-    }
+    return (order.quantity * (
+      baseBroughtPrice*0.75 +
+      (order.stitches * normalPrice) +
+      (order.stitchesSulky * sulkyPrice) +
+      (order.stitchesGolden * goldPrice) +
+      (order.stitchesTex * texPrice)
+    )) * categoryMultiplier * multiplier;
+  }
 
-    async getPatchDiameter(): Promise<number>{
-        const result = await firstValueFrom(this.basePatchDiameterPrice).then((price: number)=> {return price;})
-        return result;
-    }
-    async getNormalPrice(): Promise<number>{
-        const result = await firstValueFrom(this.baseStitchPrice).then((price: number)=> {return price/100;})
-        return result;
-    }
-    async getSulkyPrice(): Promise<number>{
-        const result = await firstValueFrom(this.baseStitchSulkyPrice).then((price: number)=> {return price/100;})
-        return result;
-    }
-    async getGoldPrice(): Promise<number>{
-        const result = await firstValueFrom(this.baseStitchGoldPrice).then((price: number)=> {return price/100;})
-        return result;
-    }
-    async getTexPrice(): Promise<number>{
-        const result = await firstValueFrom(this.baseStitchTexPrice).then((price: number)=> {return price/100;})
-        return result;
-    }
+  public calculateOtherPrice(patchQuantity: number, patchDiameter: number, patchStitches: number, patchFancyStitches: number): number {
 
-    async getExternalMultiplier(): Promise<number>{
-        const result = await firstValueFrom(this.externalMultiplier).then((price: number)=> {return price;})
-        return result;
-    }
+    return 0;
+  }
 
-    public async calculatePatchPrice(order: OrderDto): Promise<number>
-    {
-      let patchDiameterPrice = 0;
-      await this.getPatchDiameter().then(val => {patchDiameterPrice = val});
-      switch(true){
-          case (order.diameter <= 5): await this.getPatchDiameter().then(val => {patchDiameterPrice = val});                                                         break;
-          case (order.diameter > 5 && order.diameter <= 10): await this.getPatchDiameter().then( val => {patchDiameterPrice = val*3});                          break;
-          case (order.diameter >= 10): await this.getPatchDiameter().then( val => {patchDiameterPrice = val*3 + (order.diameter*10)});                          break;
-      }
-      let price = ( ((order.quantity) * ( (patchDiameterPrice) +
-                              (order.stitches * await this.getNormalPrice() ) +
-                              (order.stitchesSulky * await this.getSulkyPrice()) +
-                              (order.stitchesGolden * await this.getGoldPrice() ) +
-                              (order.stitchesTex * await this.getTexPrice() ) +
-                              (order.dueDateInDays <= 7 ? ((8-order.dueDateInDays) * 500) : 0))) );
-
-      return price * (await this.getInternal() ? 1 : await this.getExternalMultiplier()) * await this.getMultiplier();
-    }
-
-
-    public async calculateShirtPrice(order: OrderDto): Promise<number>
-    {
-
-      let price = ( ((order.quantity) *
-        (order.stitches * await this.getNormalPrice() ) +
-        (order.stitchesSulky * await this.getSulkyPrice()) +
-        (order.stitchesGolden * await this.getGoldPrice() ) +
-        (order.stitchesTex * await this.getTexPrice() ) +
-        (order.dueDateInDays <= 7 ? ((8-order.dueDateInDays) * 500) : 0)) );
-
-      return price * (await this.getInternal() ? 1 : await this.getExternalMultiplier()) * await this.getMultiplier();
-    }
-
-    public calculateSweaterPrice(patchQuantity: number, patchDiameter: number, patchStitches: number, patchFancyStitches: number): number
-    {
-
-        return 0;
-    }
-
-    public calculateOtherPrice(patchQuantity: number, patchDiameter: number, patchStitches: number, patchFancyStitches: number): number
-    {
-
-        return 0;
-    }
-
+  public static async round(num: number): Promise<number> {
+    return Math.ceil(num / 100) * 100;
+  }
+  public static async roundAccurate(num: number): Promise<number> {
+    return Math.round(num);
+  }
 }

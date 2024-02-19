@@ -16,8 +16,9 @@
             </div>
           </div>
           <div>
-            <mat-icon *ngIf="item.internal" matTooltip="Belsős rendelés">school</mat-icon>
-            <mat-icon *ngIf="!item.internal" matTooltip="Külsös rendelés">public</mat-icon>
+            <mat-icon *ngIf="item.category === 0" matTooltip="Schönherzes/egyetemi rendelés">school</mat-icon>
+            <mat-icon *ngIf="item.category === 1" matTooltip="Belsős rendelés">person</mat-icon>
+            <mat-icon *ngIf="item.category === 2" matTooltip="Külsös rendelés">public</mat-icon>
           </div>
         </section>
         <section style="display: flex; flex-direction: row; justify-content: space-between; overflow: hidden;">

@@ -24,7 +24,7 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
 import { PatchTypeComponent } from './types/patch-type/patch-type.component';
 import { ShirtTypeComponent } from './types/shirt-type/shirt-type.component';
-import { SweaterTypeComponent } from './types/sweater-type/sweater-type.component';
+import { BeanieTypeComponent } from './types/beanie-type/beanie-type.component';
 import { OtherTypeComponent } from './types/other-type/other-type.component';
 import { SettingsPatchComponent } from './settings/settings-patch/settings-patch.component';
 import {MatIconModule} from '@angular/material/icon';
@@ -43,7 +43,7 @@ import {MatTooltipModule} from "@angular/material/tooltip";
     MainCalculatorPageComponent,
     PatchTypeComponent,
     ShirtTypeComponent,
-    SweaterTypeComponent,
+    BeanieTypeComponent,
     OtherTypeComponent,
     SettingsPatchComponent,
     BasketComponent,

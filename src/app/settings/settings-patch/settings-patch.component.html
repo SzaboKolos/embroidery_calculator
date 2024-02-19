@@ -1,57 +1,63 @@
 <main class="typeCard" style="background-color: rgb(77, 77, 77); border-radius: 5px;">
-    <article class="row">
-        <section class="column">
-            <mat-form-field appearance="fill" floatLabel="always">
-                <mat-label>Normál cérna ára</mat-label>
-                <input matInput [formControl]="priceNormal" [value]="(stitchPrice | async)*100">
-                <span matTextSuffix>Ft </span>
-                <span matTextSuffix>/100 öltés </span>
-            </mat-form-field>
+  <article class="row">
+    <section class="column">
+      <mat-form-field appearance="fill" floatLabel="always">
+        <mat-label>Normál cérna ára</mat-label>
+        <input matInput [formControl]="priceNormal" [value]="(stitchPrice | async)*100">
+        <span matTextSuffix>Ft </span>
+        <span matTextSuffix>/100 öltés </span>
+      </mat-form-field>
 
-            <mat-form-field appearance="fill" floatLabel="always">
-                <mat-label>Sulky cérna ára</mat-label>
-                <input matInput [formControl]="priceSulky" [value]="(stitchSulkyPrice | async)*100">
-                <span matTextSuffix>Ft </span>
-                <span matTextSuffix>/100 öltés </span>
-            </mat-form-field>
+      <mat-form-field appearance="fill" floatLabel="always">
+        <mat-label>Sulky cérna ára</mat-label>
+        <input matInput [formControl]="priceSulky" [value]="(stitchSulkyPrice | async)*100">
+        <span matTextSuffix>Ft </span>
+        <span matTextSuffix>/100 öltés </span>
+      </mat-form-field>
 
-            <mat-form-field appearance="fill" floatLabel="always">
-                <mat-label>Arany cérna ára</mat-label>
-                <input matInput [formControl]="priceGold" [value]="(stitchGoldPrice | async)*100">
-                <span matTextSuffix>Ft </span>
-                <span matTextSuffix>/100 öltés </span>
-            </mat-form-field>
+      <mat-form-field appearance="fill" floatLabel="always">
+        <mat-label>Arany cérna ára</mat-label>
+        <input matInput [formControl]="priceGold" [value]="(stitchGoldPrice | async)*100">
+        <span matTextSuffix>Ft </span>
+        <span matTextSuffix>/100 öltés </span>
+      </mat-form-field>
 
-            <mat-form-field appearance="fill" floatLabel="always">
-                <mat-label>Texlight cérna ára</mat-label>
-                <input matInput [formControl]="priceTex" [value]="(stitchTexPrice | async)*100">
-                <span matTextSuffix>Ft </span>
-                <span matTextSuffix>/100 öltés </span>
-            </mat-form-field>
-        </section>
-        <section class="column">
-            <mat-form-field appearance="fill" floatLabel="always">
-                <mat-label>Alap ár</mat-label>
-                <input matInput [formControl]="priceBase" [value]="price | async">
-                <span matTextSuffix>Ft</span>
-            </mat-form-field>
+      <mat-form-field appearance="fill" floatLabel="always">
+        <mat-label>Texlight cérna ára</mat-label>
+        <input matInput [formControl]="priceTex" [value]="(stitchTexPrice | async)*100">
+        <span matTextSuffix>Ft </span>
+        <span matTextSuffix>/100 öltés </span>
+      </mat-form-field>
+    </section>
+    <section class="column">
+      <mat-form-field appearance="fill" floatLabel="always">
+        <mat-label>Alap ár</mat-label>
+        <input matInput [formControl]="priceBase" [value]="price | async">
+        <span matTextSuffix>Ft</span>
+      </mat-form-field>
 
-            <mat-form-field appearance="fill" floatLabel="always">
-                <mat-label>Külsős ár szorzó</mat-label>
-                <input matInput [formControl]="priceMultiplierExternal" [value]="multiplierExt | async">
-                <span matTextSuffix></span>
-            </mat-form-field>
+      <mat-form-field appearance="fill" floatLabel="always">
+        <mat-label>Hozott anyag alap ár</mat-label>
+        <input matInput [formControl]="priceBroughtBase" [value]="broughtPrice | async">
+        <span matTextSuffix>Ft</span>
+      </mat-form-field>
 
-            <mat-form-field appearance="fill" floatLabel="always">
-                <mat-label>Luxi szorzó</mat-label>
-                <input matInput [formControl]="priceMultiplier" [value]="multiplier | async">
-                <span matTextSuffix></span>
-            </mat-form-field>
+      <mat-form-field appearance="fill" floatLabel="always">
+        <mat-label>Külsős ár szorzó</mat-label>
+        <input matInput [formControl]="priceMultiplierExternal" [value]="multiplierExt | async">
+        <span matTextSuffix></span>
+      </mat-form-field>
 
-            <div>
-                <button mat-raised-button class="btn" (click)="set()" style="margin-right: 1%;">Átállít</button>
-                <button mat-raised-button class="btn" (click)="reset()" style="margin-left: 1%;">Visszaállít</button>
-            </div>
-        </section>
-    </article>
+      <mat-form-field appearance="fill" floatLabel="always">
+        <mat-label>Luxi szorzó</mat-label>
+        <input matInput [formControl]="priceMultiplier" [value]="multiplier | async">
+        <span matTextSuffix></span>
+      </mat-form-field>
+
+      <div>
+        <button mat-raised-button class="btn" (click)="set()" style="margin-right: 1%;">Átállít</button>
+        <button mat-raised-button class="btn" (click)="reset()" style="margin-left: 1%;">Visszaállít</button>
+      </div>
+    </section>
+  </article>
 </main>

@@ -11,7 +11,7 @@ import {BasketItem} from "../../models/basket-item";
   styleUrls: ['./patch-type.component.scss','../../../styles.scss']
 })
 export class PatchTypeComponent implements OnInit{
-  @Input() isInternal!: boolean;
+  @Input() category!: number;
   @Output() addedToBasket: EventEmitter<BasketItem> = new EventEmitter();
   constructor(private calculatorService: CalculatorService,
               private basketService: BasketService) {}
@@ -20,7 +20,6 @@ export class PatchTypeComponent implements OnInit{
   basePriceHint: number = 0;
 
   patchQuantity = new FormControl(0,Validators.compose([ Validators.required, Validators.pattern("^[0-9]*$"), Validators.min(1) ]));
-  patchDiameter= new FormControl(0, Validators.compose([ Validators.required, Validators.pattern("^[\.0-9]*$"), Validators.min(1) ]));
   patchStitches= new FormControl(0, Validators.compose([ Validators.pattern("^[0-9]*$"), Validators.min(0) ]));
   patchStitchesSulky= new FormControl(0, Validators.compose([ Validators.pattern("^[0-9]*$"), Validators.min(0) ]));
   patchStitchesGold= new FormControl(0, Validators.compose([ Validators.pattern("^[0-9]*$"), Validators.min(0) ]));
@@ -34,35 +33,42 @@ export class PatchTypeComponent implements OnInit{
 
 
   async calculate() {
-    if (this.patchQuantity.valid && this.patchDiameter.valid && this.patchStitches.valid && this.patchStitchesSulky.valid && this.patchStitchesGold.valid && this.patchStitchesTex.valid){
+    if (this.patchQuantity.valid && this.patchStitches.valid && this.patchStitchesSulky.valid && this.patchStitchesGold.valid && this.patchStitchesTex.valid){
       let order: OrderDto = {
-        isInternalOrder: this.isInternal,
+        category: this.category,
         quantity: this.patchQuantity.value!,
-        diameter: this.patchDiameter.value!,
         stitches: this.patchStitches.value!,
         stitchesSulky: this.patchStitchesSulky.value!,
         stitchesGolden: this.patchStitchesGold.value!,
         stitchesTex: this.patchStitchesTex.value!,
         dueDateInDays: (this.dueDate.value != null || this.dueDate.value ? this.dueDate.value : 999)
       }
-      this.price = await this.calculatorService.calculatePatchPrice(order);
+      this.price = await CalculatorService.round(await CalculatorService.calculatePatchPrice(order));
       if (this.patchQuantity.value != null) {
-        this.pricePerPatch = this.price / this.patchQuantity.value;
+        this.pricePerPatch = await CalculatorService.roundAccurate(this.price / this.patchQuantity.value);
       } else {
         this.pricePerPatch = this.price;
       }
-      this.price = this.price + await this.basePrice;
+      if (this.patchQuantity.value! >= 100){
+        this.price = this.price + 3000;
+      } else
+      if (this.patchQuantity.value! >= 10){
+        this.price = this.price + 300;
+      }
     }
     this.setHint();
   }
 
   async ngOnInit(): Promise<void> {
-    this.basePrice = await this.calculatorService.getBasePrice() * (await this.isInternal ? 1 : await this.calculatorService.getExternalMultiplier());
+    this.basePrice = await CalculatorService.getBasePrice();
   }
   async setHint(){
-    this.basePrice = await this.calculatorService.getBasePrice() * (this.isInternal ? 1 : 2);
-    if (this.price > 0){
-      this.basePriceHint = this.basePrice;
+    if (this.price > 0 && this.patchQuantity.value! >= 100){
+      this.basePriceHint = 3000;
+      return;
+    }
+    if (this.price > 0 && this.patchQuantity.value! >= 10){
+      this.basePriceHint = 300;
       return;
     }
     this.basePriceHint = 0;
@@ -76,7 +82,7 @@ export class PatchTypeComponent implements OnInit{
         quantity: this.patchQuantity.value!,
         pricePerPatch: this.pricePerPatch,
         sumPrice: this.price,
-        internal: this.isInternal
+        category: this.category
       };
       this.addedToBasket.emit(dto);
       this.name.setValue(null);
