@@ -35,11 +35,11 @@ export class BeanieTypeComponent implements OnInit{
     if (this.embroideryQuantity.valid && this.stitches.valid && this.stitchesSulky.valid && this.stitchesGold.valid && this.stitchesTex.valid){
       let order: OrderDto = {
         category: this.category,
-        quantity: this.embroideryQuantity.value!,
-        stitches: this.stitches.value!,
-        stitchesSulky: this.stitchesSulky.value!,
-        stitchesGolden: this.stitchesGold.value!,
-        stitchesTex: this.stitchesTex.value!,
+        quantity: +this.embroideryQuantity.value!,
+        stitches: +this.stitches.value!,
+        stitchesSulky: +this.stitchesSulky.value!,
+        stitchesGolden: +this.stitchesGold.value!,
+        stitchesTex: +this.stitchesTex.value!,
         dueDateInDays: (this.dueDate.value != null || this.dueDate.value ? this.dueDate.value : 999)
       } as OrderDto;
       this.price = await CalculatorService.round(await CalculatorService.calculateBeaniePrice(order));

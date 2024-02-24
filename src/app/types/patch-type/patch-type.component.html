@@ -54,13 +54,13 @@
             </div>
             <!--<img mat-card-image>-->
             <div style="width: 50%; padding-right: 2%;"></div>
-            <mat-form-field appearance="fill" style="width: 50%; padding-right: 2%;" class="d-none d-lg-block">
+            <mat-form-field appearance="fill" style="width: 50%; padding-right: 2%;">
               <mat-label>Elnevezés</mat-label>
               <input matInput [formControl]="name" maxlength="28">
             </mat-form-field>
             <div class="submitButtons">
               <button type="submit" mat-raised-button class="btn" (click)="calculate()" style="margin-right: 1%;">Számol</button>
-              <button type="submit" mat-raised-button class="btn d-none d-lg-flex" (click)="addToBasket()" style="margin-left: 1%;">Kosárhoz ad</button>
+              <button type="submit" mat-raised-button class="btn" (click)="addToBasket()" style="margin-left: 1%;">Kosárhoz ad</button>
             </div>
         </section>
     </article>

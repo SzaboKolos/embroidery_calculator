@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {BasketService} from "../services/basket-service";
 import {BasketItem} from "../models/basket-item";
 
@@ -7,9 +7,10 @@ import {BasketItem} from "../models/basket-item";
   templateUrl: './basket.component.html',
   styleUrls: ['./basket.component.scss']
 })
-export class BasketComponent implements OnInit{
+export class BasketComponent implements OnInit {
   basket: BasketItem[] = [];
   sumSumPrice: number = 0;
+  @Input() isDialog = false;
 
   constructor(private basketService: BasketService) { }
 
@@ -26,6 +27,7 @@ export class BasketComponent implements OnInit{
     this.basket = [];
     this.sumSumPrice = 0;
     this.basketService.emptyBasket();
+    this.refreshBasket();
   }
   refreshBasket() {
     this.basket = this.basketService.getBasket();

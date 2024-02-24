@@ -38,8 +38,8 @@
       </mat-card-content>
     </mat-card>
   </article>
-  <mat-divider style="margin-bottom: 10px; margin-top: 5px;"></mat-divider>
-  <article style="display: flex; flex-direction: row;">
+  <mat-divider *ngIf="!isDialog" style="margin-bottom: 10px; margin-top: 5px;"></mat-divider>
+  <article *ngIf="!isDialog" style="display: flex; flex-direction: row;">
     <div style="height: 20%">
       <button mat-raised-button type="button" (click)="empty()" style="height: 36px;">Kosár kiürítése</button>
     </div>

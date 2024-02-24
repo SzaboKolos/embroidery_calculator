@@ -1,4 +1,4 @@
-<main class="top-margin container-lg col-xl-10 col-lg-12 col-sm-12 col-xs-12"  style="padding-right: unset; padding-left: 0;">
+<main class="top-margin container-lg col-xl-10 col-lg-12"  style="padding-right: unset; padding-left: 0;">
     <section class="headerRow">
       <mat-button-toggle-group name="orderType" aria-label="Rendelés típus" style="margin-bottom: 5px;">
         <mat-button-toggle matTooltip="Schönherzes/egyetemi rendelés" [value]="0" checked="true" (change)="onValChange($event.value)"><mat-icon>school</mat-icon></mat-button-toggle>
@@ -8,9 +8,9 @@
       <h1 style="color: #333333; margin-left: 2%;">Hímző árgép</h1>
       <h3 style="margin-left:1%" *ngIf="isBetaVersion">BETA</h3>
     </section>
-    <mat-card class="card col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <mat-card>
       <section style="width: 100%" class="bodyRow">
-        <article class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
+        <article class="col-lg-8 col-md-12">
             <mat-card-content>
               <mat-tab-group>
 
@@ -21,12 +21,10 @@
               </mat-tab-group>
             </mat-card-content>
             <mat-card-actions>
-              <button class="d-block d-lg-none col-lg-4" mat-fab matTooltip="Primary" color="primary" aria-label="Kosár" (click)="openBasketDialog()">
-                <mat-icon aria-hidden="false" fontIcon="shopping_basket"></mat-icon>
-              </button>
+        
             </mat-card-actions>
         </article>
-        <article class="d-none d-lg-block col-lg-4" style="padding: 10px">
+        <article class="d-none d-lg-block col-lg-4" style="padding: 10px; min-width: 440px !important;">
           <mat-card class="basket">
             <mat-icon aria-hidden="false" fontIcon="shopping_basket"></mat-icon>
             <basket-component></basket-component>
@@ -39,7 +37,6 @@
      class="col-lg-8 col-md-12"
      (opened)="settingsOpenState = true"
      (closed)="settingsOpenState = false"
-     [ngClass]="{'hundred': settingsOpenState === true}"
   style="margin-top: 0.5%;">
 
   <mat-expansion-panel-header>
@@ -52,9 +49,11 @@
   </mat-expansion-panel-header>
   <settings-patch></settings-patch>
 </mat-expansion-panel>
-
-  <div *ngIf="settingsOpenState" style="height: 200px"></div>
-  <div style="position: absolute; right: 10px; bottom: 5px; z-index: -100">
-    <p><span>{{this.version}}</span><span *ngIf="isBetaVersion">-BETA</span></p>
-  </div>
 </main>
+<div id="bottom-bar">
+  <p>powered by love <a class="heart-link" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">❤</a></p>
+  <p><span>{{this.version}}</span><span *ngIf="isBetaVersion">-BETA</span></p>
+</div>
+<button class="d-block d-lg-none col-lg-4 basket-fab" mat-fab matTooltip="Primary" color="primary" aria-label="Kosár" (click)="openBasketDialog()">
+  <mat-icon aria-hidden="false" fontIcon="shopping_basket"></mat-icon>
+</button>

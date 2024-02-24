@@ -6,6 +6,8 @@ import {ShirtTypeComponent} from "../types/shirt-type/shirt-type.component";
 import {BasketService} from "../services/basket-service";
 import {BasketComponent} from "../basket/basket.component";
 import {BasketItem} from "../models/basket-item";
+import { MatDialog } from '@angular/material/dialog';
+import { BasketDialogComponent } from '../basket/basket-dialog/basket-dialog.component';
 
 @Component({
   selector: 'app-main-calculator-page',
@@ -14,7 +16,7 @@ import {BasketItem} from "../models/basket-item";
 })
 export class MainCalculatorPageComponent {
   isBetaVersion = true;
-  version = '3.2.1'
+  version = '3.2.27'
   settingsOpenState = false;
   category = 0;
 
@@ -24,7 +26,8 @@ export class MainCalculatorPageComponent {
   @ViewChild(BasketComponent) basket!: BasketComponent;
 
   constructor(private calculatorService: CalculatorService,
-              private basketService: BasketService){
+              private basketService: BasketService,
+              private dialog: MatDialog){
     if (localStorage.getItem('pricesDTO') != null){
       CalculatorService.setPricesByDTO(JSON.parse(localStorage.getItem('pricesDTO')!));
     } else {
@@ -40,7 +43,7 @@ export class MainCalculatorPageComponent {
           stitchTexPrice: 8,
 
           multiplier: 1,
-          externalMultiplier: 1.35
+          externalMultiplier: 2
         }
       );
     }
@@ -55,6 +58,11 @@ export class MainCalculatorPageComponent {
     this.basket.addToBasket(event);
   }
   openBasketDialog() {
-
+    this.dialog.open(BasketDialogComponent,
+      {
+        //minHeight: 'auto',
+        height: 'auto',
+        width: '100%'
+      });
   }
 }
