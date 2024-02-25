@@ -36,11 +36,11 @@ export class PatchTypeComponent implements OnInit{
     if (this.patchQuantity.valid && this.patchStitches.valid && this.patchStitchesSulky.valid && this.patchStitchesGold.valid && this.patchStitchesTex.valid){
       let order: OrderDto = {
         category: this.category,
-        quantity: this.patchQuantity.value!,
-        stitches: this.patchStitches.value!,
-        stitchesSulky: this.patchStitchesSulky.value!,
-        stitchesGolden: this.patchStitchesGold.value!,
-        stitchesTex: this.patchStitchesTex.value!,
+        quantity: +this.patchQuantity.value!,
+        stitches: +this.patchStitches.value!,
+        stitchesSulky: +this.patchStitchesSulky.value!,
+        stitchesGolden: +this.patchStitchesGold.value!,
+        stitchesTex: +this.patchStitchesTex.value!,
         dueDateInDays: (this.dueDate.value != null || this.dueDate.value ? this.dueDate.value : 999)
       }
       this.price = await CalculatorService.round(await CalculatorService.calculatePatchPrice(order));

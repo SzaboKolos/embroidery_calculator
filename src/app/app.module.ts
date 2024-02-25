@@ -22,6 +22,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatChipsModule} from '@angular/material/chips';
 
 import { PatchTypeComponent } from './types/patch-type/patch-type.component';
 import { ShirtTypeComponent } from './types/shirt-type/shirt-type.component';
@@ -36,6 +37,7 @@ import { NumbersOnlyDirective } from './directives/numbers-only.directive';
 import {MatDividerModule} from "@angular/material/divider";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import { BasketDialogComponent } from './basket/basket-dialog/basket-dialog.component';
+import { HouseSwatchComponent } from './house-swatch/house-swatch.component';
 
 
 
@@ -50,7 +52,8 @@ import { BasketDialogComponent } from './basket/basket-dialog/basket-dialog.comp
     SettingsPatchComponent,
     BasketComponent,
     NumbersOnlyDirective,
-    BasketDialogComponent
+    BasketDialogComponent,
+    HouseSwatchComponent
 
   ],
     imports: [
@@ -75,7 +78,8 @@ import { BasketDialogComponent } from './basket/basket-dialog/basket-dialog.comp
         MatButtonToggleModule,
         MatDividerModule,
         MatTooltipModule,
-        MatDialogModule
+        MatDialogModule,
+        MatChipsModule
     ],
   providers: [],
   bootstrap: [AppComponent]
