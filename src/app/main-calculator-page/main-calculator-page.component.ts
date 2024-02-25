@@ -16,7 +16,7 @@ import { BasketDialogComponent } from '../basket/basket-dialog/basket-dialog.com
 })
 export class MainCalculatorPageComponent {
   isBetaVersion = true;
-  version = '3.2.27'
+  version = '3.2.29'
   settingsOpenState = false;
   category = 0;
 

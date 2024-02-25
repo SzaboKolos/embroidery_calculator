@@ -52,6 +52,9 @@ export class ShirtTypeComponent implements OnInit{
         this.price = this.price + 3000;
       } else
       if (this.embroideryQuantity.value! >= 10){
+        this.price = this.price + 1500;
+      } else
+      if (this.embroideryQuantity.value! >= 1){
         this.price = this.price + 300;
       }
     }
@@ -67,6 +70,10 @@ export class ShirtTypeComponent implements OnInit{
       return;
     }
     if (this.price > 0 && this.embroideryQuantity.value! >= 10){
+      this.basePriceHint = 1500;
+      return;
+    }
+    if (this.price > 0 && this.embroideryQuantity.value! >= 1){
       this.basePriceHint = 300;
       return;
     }
