@@ -8,7 +8,7 @@ mat-chip {
     position: absolute;
     bottom: 8px;
     left: 8px;
-    filter: drop-shadow(black 1px 1px 1px)
+    filter: drop-shadow(black 1px 1px 1px);
 }
 img {
     object-fit: cover;
@@ -43,7 +43,7 @@ img {
 }
 .swatch-card:hover{
     transition: transform 0.3s;
-    transform: scale(1.5);
+    transform: scale(1.2);
     z-index: 100;
     mat-chip {
         display: block;
