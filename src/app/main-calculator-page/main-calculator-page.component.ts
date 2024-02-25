@@ -28,25 +28,28 @@ export class MainCalculatorPageComponent {
   constructor(private calculatorService: CalculatorService,
               private basketService: BasketService,
               private dialog: MatDialog){
-    if (localStorage.getItem('pricesDTO') != null){
+    if (localStorage.getItem('pricesDTO') != null) {
       CalculatorService.setPricesByDTO(JSON.parse(localStorage.getItem('pricesDTO')!));
-    } else {
-      // setting initial values
-      CalculatorService.setPricesByDTO(
-        {
-          price: 200,
-          broughtPrice: 500,
-
-          stitchPrice: 1,
-          stitchSulkyPrice: 1,
-          stitchGoldPrice: 8,
-          stitchTexPrice: 8,
-
-          multiplier: 1,
-          externalMultiplier: 2
-        }
-      );
+      // handling the new 'broughtPrice' value on devices that used the webapp before the update
+      if (!JSON.parse(localStorage.getItem('pricesDTO')!).broughtPrice == null) {
+        return;
+      }
     }
+    // setting initial values
+    CalculatorService.setPricesByDTO(
+      {
+        price: 200,
+        broughtPrice: 500,
+
+        stitchPrice: 1,
+        stitchSulkyPrice: 1,
+        stitchGoldPrice: 8,
+        stitchTexPrice: 8,
+
+        multiplier: 1,
+        externalMultiplier: 2
+      }
+    );
   }
   onValChange(val: number) {
     if (this.category != val) {
