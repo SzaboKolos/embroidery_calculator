@@ -46,16 +46,16 @@ export class SettingsPatchComponent {
   set(){
     if (this.priceBase.valid && this.priceBroughtBase.valid && this.priceMultiplier.valid && this.priceNormal.valid && this.priceSulky.valid && this.priceGold.valid && this.priceTex.valid){
       let pricesDTO: PricesDTO = {
-        price: this.priceBase.value!,
-        broughtPrice: this.priceBroughtBase.value!,
+        price: +this.priceBase.value!,
+        broughtPrice: +this.priceBroughtBase.value!,
 
-        stitchPrice: this.priceNormal.value!,
-        stitchSulkyPrice: this.priceSulky.value!,
-        stitchGoldPrice: this.priceGold.value!,
-        stitchTexPrice: this.priceTex.value!,
+        stitchPrice: +this.priceNormal.value!,
+        stitchSulkyPrice: +this.priceSulky.value!,
+        stitchGoldPrice: +this.priceGold.value!,
+        stitchTexPrice: +this.priceTex.value!,
 
-        multiplier: this.priceMultiplier.value!,
-        externalMultiplier: this.priceMultiplierExternal.value!
+        multiplier: +this.priceMultiplier.value!,
+        externalMultiplier: +this.priceMultiplierExternal.value!
       }
       CalculatorService.setPricesByDTO(pricesDTO);
     }

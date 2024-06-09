@@ -24,6 +24,7 @@ export class PatchTypeComponent implements OnInit{
   patchStitchesSulky= new FormControl(0, Validators.compose([ Validators.pattern("^[0-9]*$"), Validators.min(0) ]));
   patchStitchesGold= new FormControl(0, Validators.compose([ Validators.pattern("^[0-9]*$"), Validators.min(0) ]));
   patchStitchesTex = new FormControl(0, Validators.compose([ Validators.pattern("^[0-9]*$"), Validators.min(0) ]));
+  enableIron = new FormControl<boolean>(false);
 
   name = new FormControl(null);
   dueDate = new FormControl(null);

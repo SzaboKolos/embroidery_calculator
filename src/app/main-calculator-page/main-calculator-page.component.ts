@@ -16,7 +16,7 @@ import { BasketDialogComponent } from '../basket/basket-dialog/basket-dialog.com
 })
 export class MainCalculatorPageComponent {
   isBetaVersion = true;
-  version = '3.2.29'
+  version = '3.2.31'
   settingsOpenState = false;
   category = 0;
 
@@ -31,7 +31,7 @@ export class MainCalculatorPageComponent {
     if (localStorage.getItem('pricesDTO') != null) {
       CalculatorService.setPricesByDTO(JSON.parse(localStorage.getItem('pricesDTO')!));
       // handling the new 'broughtPrice' value on devices that used the webapp before the update
-      if (!JSON.parse(localStorage.getItem('pricesDTO')!).broughtPrice == null) {
+      if (!JSON.parse(localStorage.getItem('pricesDTO')!).broughtPrice != null) {
         return;
       }
     }
@@ -67,5 +67,26 @@ export class MainCalculatorPageComponent {
         height: 'auto',
         width: '100%'
       });
+  }
+  getTheme(theme?: string): boolean {
+    if (localStorage.getItem('theme') == theme) {
+      return true;
+    }
+    return false;
+  }
+  setTheme(theme?: string) {
+    if (theme == null){
+      localStorage.removeItem('theme');
+      return;
+    }
+    localStorage.setItem('theme', theme);
+  }
+  changeTheme() {
+    if (this.getTheme()) {
+      this.setTheme('cat');
+    } else {
+      this.setTheme();
+    }
+
   }
 }

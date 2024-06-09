@@ -6,6 +6,7 @@ body{
 }
 .card{
     height: 100%;
+    z-index: 1;
 }
 .basket-fab {
   position: sticky;
@@ -17,5 +18,32 @@ body{
   .width-adjust {
     width: 1320px !important;
   }
+}
+
+.backgroundCat {
+  position: fixed; 
+  z-index: -10;
+  left: -30px;
+  bottom: -100px;
+  max-height: 60%;
+}
+
+.backgroundCat2 {
+  position: absolute;
+  z-index: -2;
+  right: 450px;
+  top: 5px;
+  max-height: 15%;
+  cursor: grab;
+}
+
+.eeCircle {
+  position: fixed;
+  top: -2px;
+  right: -2px;
+  color: #72e175;
+  cursor: grab;
+  height: 6px;
+  width: 6px;
 }
 

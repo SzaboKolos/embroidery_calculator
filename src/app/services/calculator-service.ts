@@ -40,16 +40,16 @@ export class CalculatorService {
   }
 
   static setPricesByDTO(pricesDTO: PricesDTO) {
-    CalculatorService.basePrice$.next(pricesDTO.price);
-    CalculatorService.baseBroughtPrice$.next(pricesDTO.broughtPrice);
+    CalculatorService.basePrice$.next(+pricesDTO.price);
+    CalculatorService.baseBroughtPrice$.next(+pricesDTO.broughtPrice);
 
-    CalculatorService.baseStitchPrice$.next(pricesDTO.stitchPrice);
-    CalculatorService.baseStitchSulkyPrice$.next(pricesDTO.stitchSulkyPrice);
-    CalculatorService.baseStitchGoldPrice$.next(pricesDTO.stitchGoldPrice);
-    CalculatorService.baseStitchTexPrice$.next(pricesDTO.stitchTexPrice);
+    CalculatorService.baseStitchPrice$.next(+pricesDTO.stitchPrice);
+    CalculatorService.baseStitchSulkyPrice$.next(+pricesDTO.stitchSulkyPrice);
+    CalculatorService.baseStitchGoldPrice$.next(+pricesDTO.stitchGoldPrice);
+    CalculatorService.baseStitchTexPrice$.next(+pricesDTO.stitchTexPrice);
 
-    CalculatorService.multiplier$.next(pricesDTO.multiplier);
-    CalculatorService.externalMultiplier$.next(pricesDTO.externalMultiplier);
+    CalculatorService.multiplier$.next(+pricesDTO.multiplier);
+    CalculatorService.externalMultiplier$.next(+pricesDTO.externalMultiplier);
 
     // saves prices to localstorage for later use
     localStorage.setItem('pricesDTO', JSON.stringify(pricesDTO));

@@ -11,7 +11,8 @@ html {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
-  background: linear-gradient(315deg, rgba(222,228,161,1) 0%, rgba(114,225,117,1) 100%); 
+  //background: linear-gradient(315deg, rgba(222,228,161,1) 0%, rgba(114,225,117,1) 100%); 
+  background-color: rgb(168,227,139);
   background-attachment: fixed; /*edit*/
 }
 
@@ -75,10 +76,12 @@ body {
   flex-wrap: wrap;
 }
 .headerRow {
-    display: flex;
-    flex-direction: row;
-    flex-flow: row;
-    border: none;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  flex-flow: row;
+  border: none;
+  z-index: -3;
 }
 .bodyRow {
   display: flex;
@@ -86,6 +89,16 @@ body {
   flex-flow: row;
   height: 100%;
 }
+
+.calculatorBody {
+  @media (min-width: 992px) {
+    width: calc(100% - 440px);
+  }
+  @media (max-width: 992px) {
+    width: 100%;
+  }
+}
+
 .mat-divider, .mat-divider-horizontal {
   margin-bottom: 2%;
 }

@@ -2,27 +2,27 @@
     <section class="headerRow">
       <mat-button-toggle-group name="orderType" aria-label="Rendelés típus" style="margin-bottom: 5px;">
         <mat-button-toggle matTooltip="Schönherzes/egyetemi rendelés" [value]="0" checked="true" (change)="onValChange($event.value)"><mat-icon>school</mat-icon></mat-button-toggle>
-        <mat-button-toggle matTooltip="Belsős rendelés" [value]="1" (change)="onValChange($event.value)"><mat-icon>person</mat-icon></mat-button-toggle>
+        <!--<mat-button-toggle matTooltip="Belsős rendelés" [value]="1" (change)="onValChange($event.value)"><mat-icon>person</mat-icon></mat-button-toggle>-->
         <mat-button-toggle matTooltip="Külsös rendelés" [value]="2" (change)="onValChange($event.value)"><mat-icon>public</mat-icon></mat-button-toggle>
       </mat-button-toggle-group>
       <h1 style="color: #333333; margin-left: 2%;">Hímző árgép</h1>
       <h3 style="margin-left:1%" *ngIf="isBetaVersion">BETA</h3>
     </section>
-    <mat-card>
+    <mat-card style="width: 100%; z-index: 1">
       <section style="width: 100%" class="bodyRow">
-        <article class="col-lg-8 col-md-12">
-            <mat-card-content>
-              <mat-tab-group>
+        <article class="calculatorBody">
+          <mat-card-content >
+            <mat-tab-group>
 
-                <mat-tab label="Folt"> <patch-type-page [category]="category" (addedToBasket)="addToBasket($event)"></patch-type-page> </mat-tab>
-                <mat-tab label="Póló/Pulcsi"> <shirt-type-page [category]="category" (addedToBasket)="addToBasket($event)"></shirt-type-page> </mat-tab>
-                <mat-tab label="Sapka"> <beanie-type-page [category]="category" (addedToBasket)="addToBasket($event)"></beanie-type-page> </mat-tab>
-                <!-- <mat-tab label="Más.."> <other-type-page></other-type-page> </mat-tab> -->
-              </mat-tab-group>
-            </mat-card-content>
-            <mat-card-actions>
-        
-            </mat-card-actions>
+              <mat-tab label="Folt"> <patch-type-page [category]="category" (addedToBasket)="addToBasket($event)"></patch-type-page> </mat-tab>
+              <mat-tab label="Póló/Pulcsi"> <shirt-type-page [category]="category" (addedToBasket)="addToBasket($event)"></shirt-type-page> </mat-tab>
+              <mat-tab label="Sapka"> <beanie-type-page [category]="category" (addedToBasket)="addToBasket($event)"></beanie-type-page> </mat-tab>
+              <!-- <mat-tab label="Más.."> <other-type-page></other-type-page> </mat-tab> -->
+            </mat-tab-group>
+          </mat-card-content>
+          <mat-card-actions>
+      
+          </mat-card-actions>
         </article>
         <article class="d-none d-lg-block col-lg-4" style="padding: 10px; min-width: 440px !important;">
           <mat-card class="basket">
@@ -51,9 +51,14 @@
 </mat-expansion-panel>
 </main>
 <div id="bottom-bar">
-  <p>powered by love <a class="heart-link" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">❤</a></p>
+  <p *ngIf="getTheme()">made with love <a class="heart-link" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">❤</a></p>
+  <p *ngIf="getTheme('cat')" style="color: white;">made with cats <a class="heart-link" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">🐱</a></p>
   <p><span>{{this.version}}</span><span *ngIf="isBetaVersion">-BETA</span></p>
 </div>
 <button class="d-block d-lg-none col-lg-4 basket-fab" mat-fab matTooltip="Primary" color="primary" aria-label="Kosár" (click)="openBasketDialog()">
   <mat-icon aria-hidden="false" fontIcon="shopping_basket"></mat-icon>
 </button>
+<img *ngIf="getTheme('cat')" src=".\assets\CATBG.png" class="backgroundCat"/>
+<img *ngIf="getTheme('cat')" src=".\assets\CATBG2.png" class="backgroundCat2"/>
+
+<div class="eeCircle dot" (click)="changeTheme()"></div>
