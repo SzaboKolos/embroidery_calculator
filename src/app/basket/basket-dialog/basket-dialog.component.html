@@ -1,0 +1,9 @@
+<mat-dialog-content class="basket basket-dialog">
+    <!--<mat-icon aria-hidden="false" fontIcon="shopping_basket"></mat-icon>-->
+    <basket-component [isDialog]="true"></basket-component>
+</mat-dialog-content>
+    
+<mat-dialog-actions>
+    <button mat-button (click)="emptyBasket()">Kosár ürítése</button>
+    <button mat-button (click)="close()">Bezárás</button>
+</mat-dialog-actions>

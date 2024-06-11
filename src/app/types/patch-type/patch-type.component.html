@@ -8,12 +8,6 @@
             </mat-form-field>
 
             <mat-form-field appearance="fill">
-                <mat-label>Átmérő</mat-label>
-                <input matInput [formControl]="patchDiameter">
-                <span matTextSuffix>cm</span>
-            </mat-form-field>
-
-            <mat-form-field appearance="fill">
                 <mat-label>Normál cérna</mat-label>
                 <input matInput [formControl]="patchStitches">
                 <span matTextSuffix>öltés</span>
@@ -40,6 +34,11 @@
         <mat-divider class="d-block d-lg-none"></mat-divider>
         <section class="col-12 col-lg-6 column right">
             <div class="output">
+                <!--<div class="selectables">
+                    <mat-slide-toggle name="enableIron"> <mat-label style="color: #FFFFFF99;"> Felvasalható anyag</mat-label></mat-slide-toggle>
+                </div>
+                <br>-->
+        
                 <mat-form-field appearance="fill" style="width: 50%; padding-right: 2%;" floatLabel="always">
                     <mat-label>Határidő</mat-label>
                     <input matInput [formControl]="dueDate">
@@ -52,21 +51,21 @@
                 <span matTextSuffix>Ft</span>
               </mat-form-field>
                 <mat-form-field appearance="fill" style="width: 50%; padding-left: 2%; padding-right: 1%;">
-                    <mat-label>Összesített ár</mat-label>
+                    <mat-label>Végösszeg</mat-label>
                     <input matInput readonly="true" [value]="price.toString()">
                     <span matTextSuffix>Ft</span>
-                  <mat-hint>Az összesített ár tartalmaz <span style="font-weight: bold">{{ this.basePriceHint }} Ft</span> tervezési költséget.</mat-hint>
+                  <mat-hint>A végösszeg tartalmaz <span style="font-weight: bold">{{ this.basePriceHint }} Ft</span> tervezési költséget.</mat-hint>
                 </mat-form-field>
             </div>
             <!--<img mat-card-image>-->
             <div style="width: 50%; padding-right: 2%;"></div>
-            <mat-form-field appearance="fill" style="width: 50%; padding-right: 2%;" class="d-none d-lg-block">
+            <mat-form-field appearance="fill" style="width: 50%; padding-right: 2%;">
               <mat-label>Elnevezés</mat-label>
               <input matInput [formControl]="name" maxlength="28">
             </mat-form-field>
             <div class="submitButtons">
               <button type="submit" mat-raised-button class="btn" (click)="calculate()" style="margin-right: 1%;">Számol</button>
-              <button type="submit" mat-raised-button class="btn d-none d-lg-flex" (click)="addToBasket()" style="margin-left: 1%;">Kosárhoz ad</button>
+              <button type="submit" mat-raised-button class="btn" (click)="addToBasket()" style="margin-left: 1%;">Kosárhoz ad</button>
             </div>
         </section>
     </article>

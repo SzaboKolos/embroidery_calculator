@@ -16,8 +16,9 @@
             </div>
           </div>
           <div>
-            <mat-icon *ngIf="item.internal" matTooltip="Belsős rendelés">school</mat-icon>
-            <mat-icon *ngIf="!item.internal" matTooltip="Külsös rendelés">public</mat-icon>
+            <mat-icon *ngIf="item.category === 0" matTooltip="Schönherzes/egyetemi rendelés">school</mat-icon>
+            <mat-icon *ngIf="item.category === 1" matTooltip="Belsős rendelés">person</mat-icon>
+            <mat-icon *ngIf="item.category === 2" matTooltip="Külsös rendelés">public</mat-icon>
           </div>
         </section>
         <section style="display: flex; flex-direction: row; justify-content: space-between; overflow: hidden;">
@@ -37,8 +38,8 @@
       </mat-card-content>
     </mat-card>
   </article>
-  <mat-divider style="margin-bottom: 10px; margin-top: 5px;"></mat-divider>
-  <article style="display: flex; flex-direction: row;">
+  <mat-divider *ngIf="!isDialog" style="margin-bottom: 10px; margin-top: 5px;"></mat-divider>
+  <article *ngIf="!isDialog" style="display: flex; flex-direction: row;">
     <div style="height: 20%">
       <button mat-raised-button type="button" (click)="empty()" style="height: 36px;">Kosár kiürítése</button>
     </div>

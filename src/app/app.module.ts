@@ -21,10 +21,12 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatChipsModule} from '@angular/material/chips';
 
 import { PatchTypeComponent } from './types/patch-type/patch-type.component';
 import { ShirtTypeComponent } from './types/shirt-type/shirt-type.component';
-import { SweaterTypeComponent } from './types/sweater-type/sweater-type.component';
+import { BeanieTypeComponent } from './types/beanie-type/beanie-type.component';
 import { OtherTypeComponent } from './types/other-type/other-type.component';
 import { SettingsPatchComponent } from './settings/settings-patch/settings-patch.component';
 import {MatIconModule} from '@angular/material/icon';
@@ -34,6 +36,8 @@ import { BasketComponent } from './basket/basket.component';
 import { NumbersOnlyDirective } from './directives/numbers-only.directive';
 import {MatDividerModule} from "@angular/material/divider";
 import {MatTooltipModule} from "@angular/material/tooltip";
+import { BasketDialogComponent } from './basket/basket-dialog/basket-dialog.component';
+import { HouseSwatchComponent } from './house-swatch/house-swatch.component';
 
 
 
@@ -43,11 +47,13 @@ import {MatTooltipModule} from "@angular/material/tooltip";
     MainCalculatorPageComponent,
     PatchTypeComponent,
     ShirtTypeComponent,
-    SweaterTypeComponent,
+    BeanieTypeComponent,
     OtherTypeComponent,
     SettingsPatchComponent,
     BasketComponent,
-    NumbersOnlyDirective
+    NumbersOnlyDirective,
+    BasketDialogComponent,
+    HouseSwatchComponent
 
   ],
     imports: [
@@ -71,7 +77,9 @@ import {MatTooltipModule} from "@angular/material/tooltip";
         ReactiveFormsModule,
         MatButtonToggleModule,
         MatDividerModule,
-        MatTooltipModule
+        MatTooltipModule,
+        MatDialogModule,
+        MatChipsModule
     ],
   providers: [],
   bootstrap: [AppComponent]
