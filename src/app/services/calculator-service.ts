@@ -108,8 +108,8 @@ export class CalculatorService {
     });
   }
 
-  static getDeadLineMultiplier(days: number | null): number {
-    if (days == null || days > 14) {
+  static getDeadLineMultiplier(days: any): number {
+    if (days == null || days == '' || days > 14) {
       //not multiplied if longer than two weeks are available
       return 1;
     }
@@ -117,7 +117,7 @@ export class CalculatorService {
       return 10;
     }
     //           
-    return (Math.pow(0.04,days)*Math.pow(days-15,2)+1);
+    return ((-2/7)*days + 5);
   }
 
   public static async calculatePatchPrice(order: OrderDto): Promise<number> {
