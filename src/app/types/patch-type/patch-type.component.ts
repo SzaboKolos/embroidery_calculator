@@ -42,7 +42,7 @@ export class PatchTypeComponent implements OnInit{
         stitchesSulky: +this.patchStitchesSulky.value!,
         stitchesGolden: +this.patchStitchesGold.value!,
         stitchesTex: +this.patchStitchesTex.value!,
-        dueDateInDays: (this.dueDate.value != null || this.dueDate.value ? this.dueDate.value : 999)
+        dueDateInDays: this.dueDate.value
       }
       this.price = await CalculatorService.round(await CalculatorService.calculatePatchPrice(order));
       if (this.patchQuantity.value != null) {

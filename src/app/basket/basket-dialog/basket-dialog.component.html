@@ -1,9 +1,69 @@
-<mat-dialog-content class="basket basket-dialog">
-    <!--<mat-icon aria-hidden="false" fontIcon="shopping_basket"></mat-icon>-->
-    <basket-component [isDialog]="true"></basket-component>
+<mat-dialog-content class="basket-dialog">
+    <main class="typeCard basket-cont" style="height: 100%;">
+        <mat-divider style="margin-bottom: 5px"></mat-divider>
+        <article style="height: 480px;  overflow-y: scroll;" cdkScrollable>
+            <mat-card *ngFor="let item of basket" class="rounded-2" style="margin-bottom: 5px; width: 100%">
+                <mat-card-content
+                    style="display: flex; flex-direction: column; justify-content: space-between; margin-bottom: -10px">
+                    <section style="display: flex; flex-direction: row; justify-content: space-between;">
+                        <div style="display: flex; flex-direction: column">
+                            <div>
+                                <h5>{{item.name}}</h5>
+                            </div>
+                            <div style="display: flex; flex-direction: row;">
+                                <div>
+                                    <mat-icon *ngIf="item.category === 0" matTooltip="Schönherzes/egyetemi rendelés">school</mat-icon>
+                                    <mat-icon *ngIf="item.category === 1" matTooltip="Belsős rendelés">person</mat-icon>
+                                    <mat-icon *ngIf="item.category === 2" matTooltip="Külsös rendelés">public</mat-icon>
+                                </div>
+                                <mat-icon *ngIf="item.type === 0" class="typeIcon" matTooltip="Folt">yard</mat-icon>
+                                <img *ngIf="item.type === 1" class="typeIconSVG-dialog" matTooltip="Folt"
+                                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAADFUlEQVR4nO2ZS2xNQRjH7w3SFtGiomiIBTuLtopEQrCRSLpoSJRgVSHR0lVDWsXCm3olREgkWAgLjy2peERiyYJYNR6NeEY1qrePn0zyNRnNPXNn5pxz713cX3LTOz1nZv7/MzPn+2ZuIlGgQIFQAJuAFO6oOg2JXAN04k9nPhhoCDECG3MtfgqwG+j2MNADHACm50L4BKAN6CM8fcA+1Wa2xNcCr4meV8DiuMXXA3+Ij7+xrQtgDzBM/AwDTVGLXw+MkD1GIosRwJKYp00Qqs/asOKLgDfkjndAcRgDHYbGjwIVQLsMebuU1f+DuA7MAhqBQeCilHcZ6rT5ip8N9BsanqndW619VyaCWKrdVwUktXK/YSpV+BhQUdJEe0A9NRJBXNVFjwJs8ekrU6RVod6EmjY1Y+pVW7yt6h1HWvERGO9iYA2Z8RmBK54joFjlYuAgmQlaA2pRBrEs3RoAkhaj0OFioMvCwDERu197C6nycUOdGzJltstb6JKUmy36e+Ri4DP5R4+t+KTnBiVuUunWTzoDU8lfymwMzCB/mWZjoMSyMdtU4pMeSYFJauMii/89cBdYAFyw6NMuFgDfLRqzTSU+AOWGh3UTuCVr74Whv29W4qXh5zEFshF5OA+BOrm/FOiV76cMdbtcDJy2MOCbSvQCW2VffQe4p/5K/SeGeiddDKyLaQQUm+W+YkmrG2VdmNJw51SiyGId+KQS19L0Nc9iyn51PnYBzkWcSrwFJo/pYwPwU65/Ac4EHBwcdhKvPZlUhMclVVrbE4HL2vUBYKFcWwS0AEdkWqnPHGcDlqNgS7PWZk3APvspMNdLqMFAqQSiMNyXd/w4YG+GUU0BD4ATQKs6uo/CxEpgyFO82kmVy3R87Fh3EFge5amcK0Nifhvwy6P+zkjEayYOOQpQ6cFt/GiNVLxmoiXEdLIhBeyIRbxmYrXFiYUP3cCKWMVrJsqA8xHFiQH5ne2/IJctI/Mljx+Npi78EOGVWReexohKzOqAs8DLgLfOb+CZ3LM2az8phZxmlXJsUuLdUIECiVj5B7xkZgvkOX1GAAAAAElFTkSuQmCC">
+                                <mat-icon *ngIf="item.type === 0" class="typeIcon" matTooltip="Póló">layers</mat-icon>
+                                <img *ngIf="item.type === 2" class="typeIconSVG-dialog" matTooltip="Póló/Pulcsi"
+                                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAABj0lEQVR4nO2ZvUoDQRRGx1Q2CgHtBLHQNpU/nUKeQPIWgoJtCpuU8SFsBBXzDooQwdZ0UfQBDJqUUXJkcECb2Z3Z3Zld5B7YZi/3zvft3N0ZdpQSBCEzwBrQBh6BXY+8PZPT1jVUTIA6cAD0gRm/PAELDvmLwPOfvJmppWvWQwqvAcfABDu3wFJCjWXgLiF/YsaoFS1+HujhxhtwAjT0jJirYe6NHGv09JhFGjgjPudFiW9RHq0iDNyXaKCfV/wm5bOTx8Bl2eqBi6ziV4HPstUDX5kWO+CU6tD1Fa+/3e9Uh7FewX0MHFE9Dn22DEOqx9BpiwFsU122XAx0EgoMIogcJMQ6Lgb0jtLGfgDBPmPcuBh4tSQ/AHMERiVvX15cDEwtyU0TD4r6GaNpCU9dDFgLxzKgSYtbyVq4KJSjDjEQCiUzYEHeAUeUtJAFaSFHlLSQBWmhWC2UBoFRoREDKSiZgRRSTmjy8qFC43FSk4XrGAY2PI6KfBgB68ENGBMrwJX5Z5mXsX7y0cQLwj/jG1k/wFD//0WiAAAAAElFTkSuQmCC">
+                                <mat-icon *ngIf="item.type === 0" class="typeIcon">layers</mat-icon>
+                                <img *ngIf="item.type === 3" class="typeIconSVG-dialog" matTooltip="Sapka"
+                                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAABNElEQVR4nO3YQUrDQBSA4acLUa9QiqiH0CMoWLSeQbyCy4pQ8AyCC13VA6jgorrRM+i23kDrqsVfhmapZGaSyczU90F2Seb9k0AgIkopNXeAfeAJGBfHI9CRHADn/K0vGex8mT1JFbPXpsxQUgV8WgR8SKqwJCkCWrYB5lxJAbAAdIF7YOoQMC2uOTD3iDX8NvBCdc/AVtO7fuK442W+i+/HYujhV4E7wrkFVkINv1QsENoDsBwi4IbmDOoe/pjmHdU1/BrwFSFgDLTrCLgknouqw28CE9vVHO5ra2JmqBJw5rJdAQKM0yoBb8QPePUdfsNxoVABxrpPwCHp6PoE9EhHzyfgmnRc+QSYXyGpGDoHKPXfkBnRgMhEn0BkMo9P4J18jH4L2M0kYgTsBPmWKKWUuPoBtTPXa+7go0YAAAAASUVORK5CYII=">
+                            </div>
+                        </div>
+                    </section>
+                    <mat-divider style="margin-bottom: 10px; margin-top: 5px;"></mat-divider>
+                    <section style="overflow: hidden;">
+                        <div>
+                            <h6>Darabszám: <b>{{item.quantity}}</b>db</h6>
+                        </div>
+                    </section>
+                    <mat-divider style="margin-bottom: 10px; margin-top: 5px;"></mat-divider>
+                    <section style="overflow: hidden;">
+                        <div>
+                            <h6>Darabár: <b>{{item.pricePerPatch}}</b>Ft</h6>
+                        </div>
+                    </section>
+                    <mat-divider style="margin-bottom: 10px; margin-top: 5px;"></mat-divider>
+                    <section style="overflow: hidden;">
+                        <div>
+                            <h6>∑: <b>{{item.sumPrice}}</b>Ft</h6>
+                        </div>
+                    </section>
+
+                </mat-card-content>
+            </mat-card>
+        </article>
+        <mat-divider style="margin-bottom: 10px; margin-top: 5px;"></mat-divider>
+        <article style="display: flex; flex-direction: row;">
+            <div style="display: flex;
+                      flex-direction: row;
+                      align-items: flex-end;
+                      padding-left: 16px
+                      ">
+                <h6> Kosár összeg: <b>{{sumSumPrice}}</b>&nbsp;Ft</h6>
+            </div>
+        </article>
+    </main>
 </mat-dialog-content>
-    
-<mat-dialog-actions>
-    <button mat-button (click)="emptyBasket()">Kosár ürítése</button>
-    <button mat-button (click)="close()">Bezárás</button>
+
+<mat-dialog-actions style="justify-content: space-between;">
+    <button mat-button (click)="empty()">Kosár ürítése</button>
+    <button mat-button (click)="close()" color="secondary">Bezárás</button>
 </mat-dialog-actions>

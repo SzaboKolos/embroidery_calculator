@@ -10,9 +10,8 @@ import {BasketItem} from "../models/basket-item";
 export class BasketComponent implements OnInit {
   basket: BasketItem[] = [];
   sumSumPrice: number = 0;
-  @Input() isDialog = false;
 
-  constructor(private basketService: BasketService) { }
+  constructor(protected basketService: BasketService) { }
 
   ngOnInit(): void {
     this.refreshBasket();
@@ -27,12 +26,10 @@ export class BasketComponent implements OnInit {
     this.basket = [];
     this.sumSumPrice = 0;
     this.basketService.emptyBasket();
-    this.refreshBasket();
+    //this.refreshBasket();
   }
   refreshBasket() {
     this.basket = this.basketService.getBasket();
     this.basket.forEach(item => this.sumSumPrice += item.sumPrice);
   }
-
-
 }

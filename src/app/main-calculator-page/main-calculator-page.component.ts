@@ -16,9 +16,10 @@ import { BasketDialogComponent } from '../basket/basket-dialog/basket-dialog.com
 })
 export class MainCalculatorPageComponent {
   isBetaVersion = true;
-  version = '3.2.31'
+  version = '3.2.34'
   settingsOpenState = false;
   category = 0;
+  link = 'https://www.youtube.com/watch?v=Y1TlT1sbM8E&t=18s' //https://www.youtube.com/watch?v=dQw4w9WgXcQ
 
   @ViewChild(PatchTypeComponent) patchTypeComponent!: PatchTypeComponent;
   @ViewChild(ShirtTypeComponent) shirtTypeComponent!: ShirtTypeComponent;
@@ -65,7 +66,11 @@ export class MainCalculatorPageComponent {
       {
         //minHeight: 'auto',
         height: 'auto',
-        width: '100%'
+        width: '100%',
+        panelClass: 'basket-panel',
+        data: {
+          basket: this.basket
+        }
       });
   }
   getTheme(theme?: string): boolean {

@@ -108,6 +108,18 @@ export class CalculatorService {
     });
   }
 
+  static getDeadLineMultiplier(days: number | null): number {
+    if (days == null || days > 14) {
+      //not multiplied if longer than two weeks are available
+      return 1;
+    }
+    if (days != null && days < 1) {
+      return 10;
+    }
+    //           
+    return (Math.pow(0.04,days)*Math.pow(days-15,2)+1);
+  }
+
   public static async calculatePatchPrice(order: OrderDto): Promise<number> {
     const basePrice = await CalculatorService.getBasePrice(); //def: 200
     const normalPrice = await CalculatorService.getNormalPrice(); //def: 0.01
@@ -131,7 +143,7 @@ export class CalculatorService {
       (order.stitchesSulky * sulkyPrice) +
       (order.stitchesGolden * goldPrice) +
       (order.stitchesTex * texPrice)
-    )) * categoryMultiplier * multiplier;
+    )) * categoryMultiplier * multiplier * CalculatorService.getDeadLineMultiplier(order.dueDateInDays);
   }
 
 
@@ -158,7 +170,7 @@ export class CalculatorService {
       (order.stitchesSulky * sulkyPrice) +
       (order.stitchesGolden * goldPrice) +
       (order.stitchesTex * texPrice)
-    )) * categoryMultiplier * multiplier;
+    )) * categoryMultiplier * multiplier * CalculatorService.getDeadLineMultiplier(order.dueDateInDays);
   }
 
   public static async calculateBeaniePrice(order: OrderDto): Promise<number> {
@@ -184,7 +196,7 @@ export class CalculatorService {
       (order.stitchesSulky * sulkyPrice) +
       (order.stitchesGolden * goldPrice) +
       (order.stitchesTex * texPrice)
-    )) * categoryMultiplier * multiplier;
+    )) * categoryMultiplier * multiplier * CalculatorService.getDeadLineMultiplier(order.dueDateInDays);
   }
 
   public calculateOtherPrice(patchQuantity: number, patchDiameter: number, patchStitches: number, patchFancyStitches: number): number {

@@ -46,6 +46,17 @@ body {
 .basket-dialog {
   padding-left: 0;
   padding-right: 0;
+  background-color: rgb(77, 77, 77) !important;
+  color: #FFFFFF99;
+  scroll-behavior: smooth;
+}
+.basket-panel {
+  @media (min-width: 992px) {
+    width: 440px !important;
+  }
+  @media (max-width: 992px) {
+    width: 96% !important;
+  }
 }
 
 .column {
@@ -117,7 +128,9 @@ body {
 [class*='ng-tns-c'] {
     color: #FFFFFF99;
 }
-
+.mat-button-toggle-group {
+  height: 50px !important;
+}
 .mat-button-toggle-checked.mat-button-toggle-appearance-standard {
     background-color: #555555;
     color: rgba($color: #72e175, $alpha: 1) !important;
@@ -166,7 +179,7 @@ html {
   padding-bottom: 13px;
   display: flex;
   justify-content: space-between;
-  z-index: -1;
+  //z-index: -1;
   height: 50px;
   //background-color: #555555;
   //color: #FFFFFF99;
@@ -174,6 +187,7 @@ html {
   .heart-link {
     color: inherit;
     text-decoration: none;
+    cursor: help;
   }
 }
 
