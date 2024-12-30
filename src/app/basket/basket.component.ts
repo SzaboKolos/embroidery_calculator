@@ -17,19 +17,20 @@ export class BasketComponent implements OnInit {
     this.refreshBasket();
   }
 
-  addToBasket(itemToAdd: BasketItem) {
+  async addToBasket(itemToAdd: BasketItem) {
     this.basketService.addToBasket(itemToAdd);
     this.refreshBasket();
     console.log(this.basket, this.basketService.getBasket())
   }
-  empty() {
+  async empty() {
+    this.basketService.emptyBasket();
     this.basket = [];
     this.sumSumPrice = 0;
-    this.basketService.emptyBasket();
     //this.refreshBasket();
   }
-  refreshBasket() {
+  async refreshBasket() {
     this.basket = this.basketService.getBasket();
+    this.sumSumPrice = 0;
     this.basket.forEach(item => this.sumSumPrice += item.sumPrice);
   }
 }

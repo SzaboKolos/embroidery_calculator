@@ -3,3 +3,7 @@
     align-content: center;
     margin-left: 10px;
 }
+
+.unclickable {
+    pointer-events: none;
+}

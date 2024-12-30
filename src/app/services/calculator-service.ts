@@ -16,6 +16,9 @@ export class CalculatorService {
 
   static baseBroughtPrice$: BehaviorSubject<number> = new BehaviorSubject(500);
   static baseBroughtPrice = CalculatorService.baseBroughtPrice$.asObservable();
+
+  static baseIronPrice$: BehaviorSubject<number> = new BehaviorSubject(50);
+  static baseIronPrice = CalculatorService.baseIronPrice$.asObservable();
   // Stitch Prices
   static baseStitchPrice$: BehaviorSubject<number> = new BehaviorSubject(1);
   static baseStitchPrice = CalculatorService.baseStitchPrice$.asObservable();
@@ -102,6 +105,12 @@ export class CalculatorService {
     });
   }
 
+  static async getIronPrice(): Promise<number> {
+    return await firstValueFrom(this.baseIronPrice).then((price: number) => {
+      return price;
+    });
+  }
+
   static async getExternalMultiplier(): Promise<number> {
     return await firstValueFrom(this.externalMultiplier).then((price: number) => {
       return price;
@@ -165,6 +174,7 @@ export class CalculatorService {
     }
 
     return (order.quantity * (
+      (order.ironDiameter ? order.ironDiameter * await CalculatorService.getIronPrice() : 1) *
       baseBroughtPrice +
       (order.stitches * normalPrice) +
       (order.stitchesSulky * sulkyPrice) +

@@ -1,4 +1,6 @@
 export interface PricesDTO {
+  ironPrice: number,
+
   price: number,
   broughtPrice: number,
 

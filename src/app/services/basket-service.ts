@@ -23,6 +23,7 @@ export class BasketService {
     return this.basketContent;
   }
   emptyBasket() {
-    localStorage.removeItem('basketContent');
+    this.basketContent = [];
+    localStorage.removeItem('basketContent');    
   }
 }

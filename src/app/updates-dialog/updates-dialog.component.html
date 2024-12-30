@@ -1,0 +1,35 @@
+<mat-dialog-content class="basket-dialog">
+    <main class="typeCard update-cont" style="height: 100%;">
+        <h2>Frissítések</h2>
+        <mat-divider style="margin-bottom: 5px"></mat-divider>
+        <article style="height: 480px;  overflow-y: scroll;" cdkScrollable>
+            <mat-card *ngFor="let item of updates" class="rounded-2 update-card">
+                <mat-card-content>
+                  <section style="display: flex; flex-direction: row; padding-bottom: 13px; justify-content: space-between;">
+                    <div style="display: flex; flex-direction: row;">
+                      <mat-icon matTooltip="{{item.date}}">warning</mat-icon>
+                      <div style="padding-left: 8px">
+                        <h6>{{item.version}}</h6>
+                      </div>
+                    </div>
+                  </section>
+                  <section style="display: flex; flex-direction: row; justify-content: space-between; overflow: hidden;">
+                    <div style="overflow: hidden;">
+                      <p>{{item.content}}</p>
+                    </div>
+                  </section>
+                </mat-card-content>
+              </mat-card>
+        </article>
+        
+        <mat-divider style="margin-bottom: 10px; margin-top: 5px;"></mat-divider>
+
+        <article style="display: flex; flex-direction: row;">
+
+        </article>
+    </main>
+</mat-dialog-content>
+
+<mat-dialog-actions style="justify-content: space-between;">
+    <button mat-button (click)="close()" color="secondary">Bezárás</button>
+</mat-dialog-actions>
