@@ -8,6 +8,7 @@ import {BasketComponent} from "../basket/basket.component";
 import {BasketItem} from "../models/basket-item";
 import { MatDialog } from '@angular/material/dialog';
 import { BasketDialogComponent } from '../basket/basket-dialog/basket-dialog.component';
+import { UpdatesDialogComponent } from '../updates-dialog/updates-dialog.component';
 
 @Component({
   selector: 'app-main-calculator-page',
@@ -16,9 +17,10 @@ import { BasketDialogComponent } from '../basket/basket-dialog/basket-dialog.com
 })
 export class MainCalculatorPageComponent {
   isBetaVersion = true;
-  version = '3.2.31'
+  version = '3.2.37'
   settingsOpenState = false;
   category = 0;
+  link = 'https://www.youtube.com/watch?v=Y1TlT1sbM8E&t=18s' //https://www.youtube.com/watch?v=dQw4w9WgXcQ
 
   @ViewChild(PatchTypeComponent) patchTypeComponent!: PatchTypeComponent;
   @ViewChild(ShirtTypeComponent) shirtTypeComponent!: ShirtTypeComponent;
@@ -28,6 +30,23 @@ export class MainCalculatorPageComponent {
   constructor(private calculatorService: CalculatorService,
               private basketService: BasketService,
               private dialog: MatDialog){
+    // opening update message if there's any unopened updates
+    console.log(localStorage.getItem('version'));
+    
+    if (localStorage.getItem('version') == null || localStorage.getItem('version') != this.version) { 
+    
+      this.dialog.open(UpdatesDialogComponent,
+        {
+          //minHeight: 'auto',
+          height: 'auto',
+          width: '100%',
+          panelClass: 'basket-panel',
+          data: {}
+        });
+
+      localStorage.setItem('version', this.version);
+    }
+
     if (localStorage.getItem('pricesDTO') != null) {
       CalculatorService.setPricesByDTO(JSON.parse(localStorage.getItem('pricesDTO')!));
       // handling the new 'broughtPrice' value on devices that used the webapp before the update
@@ -38,6 +57,8 @@ export class MainCalculatorPageComponent {
     // setting initial values
     CalculatorService.setPricesByDTO(
       {
+        ironPrice: 50,
+        
         price: 200,
         broughtPrice: 500,
 
@@ -65,7 +86,11 @@ export class MainCalculatorPageComponent {
       {
         //minHeight: 'auto',
         height: 'auto',
-        width: '100%'
+        width: '100%',
+        panelClass: 'basket-panel',
+        data: {
+          basket: this.basket
+        }
       });
   }
   getTheme(theme?: string): boolean {

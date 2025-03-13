@@ -5,6 +5,7 @@ export interface OrderDto {
   stitchesSulky: number,
   stitchesGolden: number,
   stitchesTex: number,
-  dueDateInDays: number
+  dueDateInDays?: number,
+  ironDiameter?: number
 }
 

@@ -1,12 +1,12 @@
 <main class="top-margin container-lg col-xl-10 col-lg-12"  style="padding-right: unset; padding-left: 0;">
     <section class="headerRow">
       <mat-button-toggle-group name="orderType" aria-label="Rendelés típus" style="margin-bottom: 5px;">
-        <mat-button-toggle matTooltip="Schönherzes/egyetemi rendelés" [value]="0" checked="true" (change)="onValChange($event.value)"><mat-icon>school</mat-icon></mat-button-toggle>
-        <!--<mat-button-toggle matTooltip="Belsős rendelés" [value]="1" (change)="onValChange($event.value)"><mat-icon>person</mat-icon></mat-button-toggle>-->
+        <mat-button-toggle matTooltip="Belsős rendelés" [value]="0" checked="true" (change)="onValChange($event.value)"><mat-icon>school</mat-icon></mat-button-toggle>
+        <!--<mat-button-toggle matTooltip="Schönherzes/egyetemi rendelés" [value]="1" (change)="onValChange($event.value)"><mat-icon>person</mat-icon></mat-button-toggle>-->
         <mat-button-toggle matTooltip="Külsös rendelés" [value]="2" (change)="onValChange($event.value)"><mat-icon>public</mat-icon></mat-button-toggle>
       </mat-button-toggle-group>
-      <h1 style="color: #333333; margin-left: 2%;">Hímző árgép</h1>
-      <h3 style="margin-left:1%" *ngIf="isBetaVersion">BETA</h3>
+      <h1 style="color: #333333; margin-left: 2%;"><b>Hímző árgép</b></h1>
+      <h3 style="margin-left:6px" *ngIf="isBetaVersion"><b>BETA</b></h3>
     </section>
     <mat-card style="width: 100%; z-index: 1">
       <section style="width: 100%" class="bodyRow">
@@ -37,7 +37,7 @@
      class="col-lg-8 col-md-12"
      (opened)="settingsOpenState = true"
      (closed)="settingsOpenState = false"
-  style="margin-top: 0.5%;">
+  style="margin-top: 0.5%; z-index: 1;">
 
   <mat-expansion-panel-header>
     <mat-panel-title>
@@ -51,8 +51,8 @@
 </mat-expansion-panel>
 </main>
 <div id="bottom-bar">
-  <p *ngIf="getTheme()">made with love <a class="heart-link" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">❤</a></p>
-  <p *ngIf="getTheme('cat')" style="color: white;">made with cats <a class="heart-link" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">🐱</a></p>
+  <p *ngIf="getTheme()">made with love <a class="heart-link" href="{{link}}" target="_blank">❤</a></p>
+  <p *ngIf="getTheme('cat')" style="color: white;">made with cats <a class="heart-link" href="{{link}}" target="_blank">🐱</a></p>
   <p><span>{{this.version}}</span><span *ngIf="isBetaVersion">-BETA</span></p>
 </div>
 <button class="d-block d-lg-none col-lg-4 basket-fab" mat-fab matTooltip="Primary" color="primary" aria-label="Kosár" (click)="openBasketDialog()">

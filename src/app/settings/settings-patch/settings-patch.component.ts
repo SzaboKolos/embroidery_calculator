@@ -10,6 +10,7 @@ import { PricesDTO } from 'src/app/models/prices-dto';
   styleUrls: ['./settings-patch.component.scss']
 })
 export class SettingsPatchComponent {
+  ironPrice;
   price;
   broughtPrice;
   stitchPrice;
@@ -22,6 +23,8 @@ export class SettingsPatchComponent {
 
   constructor(private calculatorService: CalculatorService)
   {
+      this.ironPrice = CalculatorService.getIronPrice();
+
       this.price = CalculatorService.getBasePrice();
       this.broughtPrice = CalculatorService.getBaseBroughtPrice();
 
@@ -43,9 +46,14 @@ export class SettingsPatchComponent {
   priceMultiplier= new FormControl(1, Validators.compose([Validators.required, Validators.pattern("^[\.0-9]*$"), Validators.min(0.01)]));
   priceMultiplierExternal = new FormControl(2, Validators.compose([Validators.required, Validators.pattern("^[\.0-9]*$"), Validators.min(0.01)]));
 
+  priceIron = new FormControl(50, Validators.compose([ Validators.required,Validators.pattern("^[\.0-9]*$")]));
+
+
   set(){
-    if (this.priceBase.valid && this.priceBroughtBase.valid && this.priceMultiplier.valid && this.priceNormal.valid && this.priceSulky.valid && this.priceGold.valid && this.priceTex.valid){
+    if (this.priceBase.valid && this.priceBroughtBase.valid && this.priceMultiplier.valid && this.priceNormal.valid && this.priceSulky.valid && this.priceGold.valid && this.priceTex.valid && this.priceIron.valid){
       let pricesDTO: PricesDTO = {
+        ironPrice: +this.ironPrice.value!,
+
         price: +this.priceBase.value!,
         broughtPrice: +this.priceBroughtBase.value!,
 
@@ -62,6 +70,7 @@ export class SettingsPatchComponent {
   }
   reset(){
     let pricesDTO: PricesDTO = {
+      ironPrice: 50,
       price: 200,
       broughtPrice: 500,
 

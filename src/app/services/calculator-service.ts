@@ -16,6 +16,9 @@ export class CalculatorService {
 
   static baseBroughtPrice$: BehaviorSubject<number> = new BehaviorSubject(500);
   static baseBroughtPrice = CalculatorService.baseBroughtPrice$.asObservable();
+
+  static baseIronPrice$: BehaviorSubject<number> = new BehaviorSubject(50);
+  static baseIronPrice = CalculatorService.baseIronPrice$.asObservable();
   // Stitch Prices
   static baseStitchPrice$: BehaviorSubject<number> = new BehaviorSubject(1);
   static baseStitchPrice = CalculatorService.baseStitchPrice$.asObservable();
@@ -102,10 +105,28 @@ export class CalculatorService {
     });
   }
 
+  static async getIronPrice(): Promise<number> {
+    return await firstValueFrom(this.baseIronPrice).then((price: number) => {
+      return price;
+    });
+  }
+
   static async getExternalMultiplier(): Promise<number> {
     return await firstValueFrom(this.externalMultiplier).then((price: number) => {
       return price;
     });
+  }
+
+  static getDeadLineMultiplier(days: any): number {
+    if (days == null || days == '' || days > 14) {
+      //not multiplied if longer than two weeks are available
+      return 1;
+    }
+    if (days != null && days < 1) {
+      return 10;
+    }
+    //           
+    return ((-2/7)*days + 5);
   }
 
   public static async calculatePatchPrice(order: OrderDto): Promise<number> {
@@ -131,7 +152,7 @@ export class CalculatorService {
       (order.stitchesSulky * sulkyPrice) +
       (order.stitchesGolden * goldPrice) +
       (order.stitchesTex * texPrice)
-    )) * categoryMultiplier * multiplier;
+    )) * categoryMultiplier * multiplier * CalculatorService.getDeadLineMultiplier(order.dueDateInDays);
   }
 
 
@@ -153,12 +174,13 @@ export class CalculatorService {
     }
 
     return (order.quantity * (
+      (order.ironDiameter ? order.ironDiameter * await CalculatorService.getIronPrice() : 1) *
       baseBroughtPrice +
       (order.stitches * normalPrice) +
       (order.stitchesSulky * sulkyPrice) +
       (order.stitchesGolden * goldPrice) +
       (order.stitchesTex * texPrice)
-    )) * categoryMultiplier * multiplier;
+    )) * categoryMultiplier * multiplier * CalculatorService.getDeadLineMultiplier(order.dueDateInDays);
   }
 
   public static async calculateBeaniePrice(order: OrderDto): Promise<number> {
@@ -184,7 +206,7 @@ export class CalculatorService {
       (order.stitchesSulky * sulkyPrice) +
       (order.stitchesGolden * goldPrice) +
       (order.stitchesTex * texPrice)
-    )) * categoryMultiplier * multiplier;
+    )) * categoryMultiplier * multiplier * CalculatorService.getDeadLineMultiplier(order.dueDateInDays);
   }
 
   public calculateOtherPrice(patchQuantity: number, patchDiameter: number, patchStitches: number, patchFancyStitches: number): number {

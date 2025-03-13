@@ -19,12 +19,13 @@ export class PatchTypeComponent implements OnInit{
   basePrice: number = 1;
   basePriceHint: number = 0;
 
-  patchQuantity = new FormControl(0,Validators.compose([ Validators.required, Validators.pattern("^[0-9]*$"), Validators.min(1) ]));
-  patchStitches= new FormControl(0, Validators.compose([ Validators.pattern("^[0-9]*$"), Validators.min(0) ]));
-  patchStitchesSulky= new FormControl(0, Validators.compose([ Validators.pattern("^[0-9]*$"), Validators.min(0) ]));
-  patchStitchesGold= new FormControl(0, Validators.compose([ Validators.pattern("^[0-9]*$"), Validators.min(0) ]));
-  patchStitchesTex = new FormControl(0, Validators.compose([ Validators.pattern("^[0-9]*$"), Validators.min(0) ]));
+  patchQuantity = new FormControl(null,Validators.compose([ Validators.required, Validators.pattern("^[0-9]*$"), Validators.min(1) ]));
+  patchStitches= new FormControl(null, Validators.compose([ Validators.pattern("^[0-9]*$"), Validators.min(0) ]));
+  patchStitchesSulky= new FormControl(null, Validators.compose([ Validators.pattern("^[0-9]*$"), Validators.min(0) ]));
+  patchStitchesGold= new FormControl(null, Validators.compose([ Validators.pattern("^[0-9]*$"), Validators.min(0) ]));
+  patchStitchesTex = new FormControl(null, Validators.compose([ Validators.pattern("^[0-9]*$"), Validators.min(0) ]));
   enableIron = new FormControl<boolean>(false);
+  ironDiameter = new FormControl({value: null, disabled: !this.enableIron.value }, Validators.compose([ Validators.pattern("^[0-9]*$"), Validators.min(0) ]));
 
   name = new FormControl(null);
   dueDate = new FormControl(null);
@@ -42,7 +43,8 @@ export class PatchTypeComponent implements OnInit{
         stitchesSulky: +this.patchStitchesSulky.value!,
         stitchesGolden: +this.patchStitchesGold.value!,
         stitchesTex: +this.patchStitchesTex.value!,
-        dueDateInDays: (this.dueDate.value != null || this.dueDate.value ? this.dueDate.value : 999)
+        dueDateInDays: this.dueDate.value,
+        ironDiameter: this.enableIron.value ? this.ironDiameter.value : undefined
       }
       this.price = await CalculatorService.round(await CalculatorService.calculatePatchPrice(order));
       if (this.patchQuantity.value != null) {
@@ -62,6 +64,15 @@ export class PatchTypeComponent implements OnInit{
 
   async ngOnInit(): Promise<void> {
     this.basePrice = await CalculatorService.getBasePrice();
+
+    this.enableIron.valueChanges.subscribe(ev => {
+      if (!this.enableIron.value) {
+        this.ironDiameter.disable()
+        this.ironDiameter.setValue(null)
+      } else {
+        this.ironDiameter.enable()
+      }
+    });
   }
   async setHint(){
     if (this.price > 0 && this.patchQuantity.value! >= 100){

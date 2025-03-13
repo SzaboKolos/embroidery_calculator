@@ -10,13 +10,11 @@ export class BasketService {
   addToBasket(itemToAdd: BasketItem) {
     let basketContentTemp: BasketItem[] = this.getBasket();
     if (!basketContentTemp) {
-      localStorage.setItem('basketContent',JSON.stringify([itemToAdd]));
+      localStorage.setItem('basketContent', JSON.stringify([itemToAdd]));
     } else {
       basketContentTemp.push(itemToAdd);
-      localStorage.setItem('basketContent',JSON.stringify(basketContentTemp));
+      localStorage.setItem('basketContent', JSON.stringify(basketContentTemp));
     }
-    console.log("ls:", this.getBasket());
-    console.log("normal:",this.basketContent)
   }
   getBasket(): BasketItem[] {
     if (localStorage.getItem('basketContent')){
@@ -25,6 +23,7 @@ export class BasketService {
     return this.basketContent;
   }
   emptyBasket() {
-    localStorage.setItem('basketContent','');
+    this.basketContent = [];
+    localStorage.removeItem('basketContent');    
   }
 }

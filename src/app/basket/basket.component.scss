@@ -7,10 +7,10 @@
   transform: scale(2);
 }
 .typeIconSVG {
-  height: 48px;
-  width: 48px;
-  margin-left: -12px;
-  margin-top: -12px;
+  height: 36px;
+  width: 36px;
+  margin-left: -8px;
+  margin-top: -8px;
   margin-right: -8px;
   opacity: 60%;
   text-shadow: #000 2px 2px 3px 0;
@@ -19,4 +19,14 @@
 .basket-cont {
   margin-left: 6px;
   margin-right: 6px;
+}
+.basket-card {
+  margin-bottom: 5px; 
+  min-width: 366px;
+  .mat-mdc-card-content {
+    display: flex; 
+    flex-direction: column; 
+    justify-content: space-between; 
+    margin-bottom: -10px;
+  }
 }

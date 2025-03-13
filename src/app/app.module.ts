@@ -34,10 +34,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CalculatorService } from './services/calculator-service';
 import { BasketComponent } from './basket/basket.component';
 import { NumbersOnlyDirective } from './directives/numbers-only.directive';
-import {MatDividerModule} from "@angular/material/divider";
-import {MatTooltipModule} from "@angular/material/tooltip";
+import { MatDividerModule } from "@angular/material/divider";
+import { MatTooltipModule } from "@angular/material/tooltip";
 import { BasketDialogComponent } from './basket/basket-dialog/basket-dialog.component';
 import { HouseSwatchComponent } from './house-swatch/house-swatch.component';
+import { UpdatesDialogComponent } from './updates-dialog/updates-dialog.component';
 
 
 
@@ -53,34 +54,34 @@ import { HouseSwatchComponent } from './house-swatch/house-swatch.component';
     BasketComponent,
     NumbersOnlyDirective,
     BasketDialogComponent,
+    UpdatesDialogComponent,
     HouseSwatchComponent
-
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        MatAutocompleteModule,
-        MatCheckboxModule,
-        MatButtonModule,
-        MatFormFieldModule,
-        MatDatepickerModule,
-        MatRadioModule,
-        MatInputModule,
-        MatSelectModule,
-        MatSlideToggleModule,
-        MatCardModule,
-        MatTabsModule,
-        MatGridListModule,
-        MatExpansionModule,
-        MatIconModule,
-        ReactiveFormsModule,
-        MatButtonToggleModule,
-        MatDividerModule,
-        MatTooltipModule,
-        MatDialogModule,
-        MatChipsModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatAutocompleteModule,
+    MatCheckboxModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatDatepickerModule,
+    MatRadioModule,
+    MatInputModule,
+    MatSelectModule,
+    MatSlideToggleModule,
+    MatCardModule,
+    MatTabsModule,
+    MatGridListModule,
+    MatExpansionModule,
+    MatIconModule,
+    ReactiveFormsModule,
+    MatButtonToggleModule,
+    MatDividerModule,
+    MatTooltipModule,
+    MatDialogModule,
+    MatChipsModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

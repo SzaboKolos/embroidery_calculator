@@ -54,6 +54,13 @@
         <span matTextSuffix></span>
       </mat-form-field>
 
+      <mat-form-field appearance="fill" floatLabel="always">
+        <mat-label>Felvasalható anyag ár</mat-label>
+        <input matInput [formControl]="priceIron" [value]="ironPrice | async">
+        <span matTextSuffix>Ft </span>
+        <span matTextSuffix>/cm </span>
+      </mat-form-field>
+
       <div>
         <button mat-raised-button class="btn" (click)="set()" style="margin-right: 1%;">Átállít</button>
         <button mat-raised-button class="btn" (click)="reset()" style="margin-left: 1%;">Visszaállít</button>

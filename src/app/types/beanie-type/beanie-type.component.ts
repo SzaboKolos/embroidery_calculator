@@ -77,7 +77,7 @@ export class BeanieTypeComponent implements OnInit{
       await this.calculate();
       const dto: BasketItem = {
         name: this.name.value!,
-        type: 2,
+        type: 3,
         quantity: this.embroideryQuantity.value!,
         pricePerPatch: this.pricePerPatch,
         sumPrice: this.price,
