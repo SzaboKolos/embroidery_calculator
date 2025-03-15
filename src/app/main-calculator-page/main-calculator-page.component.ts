@@ -17,7 +17,7 @@ import { UpdatesDialogComponent } from '../updates-dialog/updates-dialog.compone
 })
 export class MainCalculatorPageComponent {
   isBetaVersion = true;
-  version = '3.2.37'
+  version = '3.2.38'
   settingsOpenState = false;
   category = 0;
   link = 'https://www.youtube.com/watch?v=Y1TlT1sbM8E&t=18s' //https://www.youtube.com/watch?v=dQw4w9WgXcQ
