@@ -148,6 +148,7 @@ export class CalculatorService {
     }
     return (order.quantity * (
       basePrice +
+      (order.ironDiameter ? order.ironDiameter * await CalculatorService.getIronPrice() : 1) +
       (order.stitches * normalPrice) +
       (order.stitchesSulky * sulkyPrice) +
       (order.stitchesGolden * goldPrice) +
@@ -174,7 +175,6 @@ export class CalculatorService {
     }
 
     return (order.quantity * (
-      (order.ironDiameter ? order.ironDiameter * await CalculatorService.getIronPrice() : 1) *
       baseBroughtPrice +
       (order.stitches * normalPrice) +
       (order.stitchesSulky * sulkyPrice) +
