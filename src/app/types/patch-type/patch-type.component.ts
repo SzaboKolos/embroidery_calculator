@@ -47,16 +47,16 @@ export class PatchTypeComponent implements OnInit{
         ironDiameter: this.enableIron.value ? this.ironDiameter.value : undefined
       }
       this.price = await CalculatorService.round(await CalculatorService.calculatePatchPrice(order));
-      if (this.patchQuantity.value != null) {
-        this.pricePerPatch = await CalculatorService.roundAccurate(this.price / this.patchQuantity.value);
-      } else {
-        this.pricePerPatch = this.price;
-      }
       if (this.patchQuantity.value! >= 100){
         this.price = this.price + 3000;
       } else
       if (this.patchQuantity.value! >= 10){
         this.price = this.price + 300;
+      }
+      if (this.patchQuantity.value != null) {
+        this.pricePerPatch = await CalculatorService.roundAccurate(this.price / this.patchQuantity.value);
+      } else {
+        this.pricePerPatch = this.price;
       }
     }
     this.setHint();

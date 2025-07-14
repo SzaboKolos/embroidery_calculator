@@ -40,12 +40,12 @@
         </mat-form-field>
         <br>
         <mat-form-field appearance="fill" style="width: 50%; padding-right: 2%;">
-          <mat-label>Egy póló/pulcsi ára</mat-label>
+          <mat-label>Bruttó darabár</mat-label>
           <input matInput readonly="true" [value]="pricePerPatch.toString()">
           <span matTextSuffix>Ft</span>
         </mat-form-field>
         <mat-form-field appearance="fill" style="width: 50%; padding-left: 2%; padding-right: 1%;">
-          <mat-label>Végösszeg</mat-label>
+          <mat-label>Bruttó végösszeg</mat-label>
           <input matInput readonly="true" [value]="price.toString()">
           <span matTextSuffix>Ft</span>
           <mat-hint>A végösszeg tartalmaz <span style="font-weight: bold">{{ this.basePriceHint }} Ft</span> tervezési költséget.</mat-hint>

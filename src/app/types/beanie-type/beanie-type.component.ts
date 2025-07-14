@@ -43,16 +43,16 @@ export class BeanieTypeComponent implements OnInit{
         dueDateInDays: (this.dueDate.value != null || this.dueDate.value ? this.dueDate.value : 999)
       } as OrderDto;
       this.price = await CalculatorService.round(await CalculatorService.calculateBeaniePrice(order));
-      if (this.embroideryQuantity.value != null) {
-        this.pricePerPatch = await CalculatorService.roundAccurate(this.price / this.embroideryQuantity.value);
-      } else {
-        this.pricePerPatch = this.price;
-      }
       if (this.embroideryQuantity.value! >= 100){
         this.price = this.price + 3000;
       } else
       if (this.embroideryQuantity.value! >= 10){
         this.price = this.price + 300;
+      }
+      if (this.embroideryQuantity.value != null) {
+        this.pricePerPatch = await CalculatorService.roundAccurate(this.price / this.embroideryQuantity.value);
+      } else {
+        this.pricePerPatch = this.price;
       }
     }
     this.setHint();

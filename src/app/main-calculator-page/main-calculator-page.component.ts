@@ -1,11 +1,11 @@
-import {Component, ViewChild} from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { CalculatorService } from '../services/calculator-service';
-import {PatchTypeComponent} from "../types/patch-type/patch-type.component";
-import {BeanieTypeComponent} from "../types/beanie-type/beanie-type.component";
-import {ShirtTypeComponent} from "../types/shirt-type/shirt-type.component";
-import {BasketService} from "../services/basket-service";
-import {BasketComponent} from "../basket/basket.component";
-import {BasketItem} from "../models/basket-item";
+import { PatchTypeComponent } from "../types/patch-type/patch-type.component";
+import { BeanieTypeComponent } from "../types/beanie-type/beanie-type.component";
+import { ShirtTypeComponent } from "../types/shirt-type/shirt-type.component";
+import { BasketService } from "../services/basket-service";
+import { BasketComponent } from "../basket/basket.component";
+import { BasketItem } from "../models/basket-item";
 import { MatDialog } from '@angular/material/dialog';
 import { BasketDialogComponent } from '../basket/basket-dialog/basket-dialog.component';
 import { UpdatesDialogComponent } from '../updates-dialog/updates-dialog.component';
@@ -17,7 +17,7 @@ import { UpdatesDialogComponent } from '../updates-dialog/updates-dialog.compone
 })
 export class MainCalculatorPageComponent {
   isBetaVersion = true;
-  version = '3.2.38'
+  version = '3.2.39'
   settingsOpenState = false;
   category = 0;
   link = 'https://www.youtube.com/watch?v=Y1TlT1sbM8E&t=18s' //https://www.youtube.com/watch?v=dQw4w9WgXcQ
