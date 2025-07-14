@@ -1,15 +1,20 @@
-<mat-dialog-content class="basket-dialog">
+<mat-dialog-content class="basket-dialog rounded-2">
     <main class="typeCard update-cont" style="height: 100%;">
         <h2>Frissítések</h2>
         <mat-divider style="margin-bottom: 5px"></mat-divider>
         <article style="height: 480px;  overflow-y: scroll;" cdkScrollable>
-            <mat-card *ngFor="let item of updates" class="rounded-2 update-card">
+            <mat-card *ngFor="let item of updates; index as i" class="rounded-2 update-card" [class.mostRecentBorder]="i === 0">
                 <mat-card-content>
                   <section style="display: flex; flex-direction: row; padding-bottom: 13px; justify-content: space-between;">
                     <div style="display: flex; flex-direction: row;">
-                      <mat-icon matTooltip="{{item.date}}">warning</mat-icon>
-                      <div style="padding-left: 8px">
-                        <h6>{{item.version}}</h6>
+                      <mat-icon matTooltip="{{item.date}}" [class.mostRecent]="i === 0">warning</mat-icon>
+                      <div style="padding-left: 8px; padding-top: 2px;">
+                        <h6 [class.mostRecent]="i === 0">{{item.version}}</h6>
+                      </div>
+                    </div>
+                    <div style="display: flex; flex-direction: row; padding-top: 2px;">
+                      <div>
+                        <h6>{{item.date}}</h6>
                       </div>
                     </div>
                   </section>
