@@ -18,11 +18,11 @@ export class ShirtTypeComponent implements OnInit{
   baseBroughtPrice: number = 1;
   basePriceHint: number = 0;
 
-  embroideryQuantity = new FormControl(0,Validators.compose([ Validators.required, Validators.pattern("^[0-9]*$"), Validators.min(1)]));
-  stitches= new FormControl(0, Validators.compose([Validators.pattern("^[0-9]*$"), Validators.min(0)]));
-  stitchesSulky= new FormControl(0, Validators.compose([Validators.pattern("^[0-9]*$"), Validators.min(0)]));
-  stitchesGold= new FormControl(0, Validators.compose([Validators.pattern("^[0-9]*$"), Validators.min(0)]));
-  stitchesTex = new FormControl(0, Validators.compose([Validators.pattern("^[0-9]*$"), Validators.min(0)]));
+  embroideryQuantity = new FormControl(null,Validators.compose([ Validators.required, Validators.pattern("^[0-9]*$"), Validators.min(1)]));
+  stitches= new FormControl(null, Validators.compose([Validators.pattern("^[0-9]*$"), Validators.min(0)]));
+  stitchesSulky= new FormControl(null, Validators.compose([Validators.pattern("^[0-9]*$"), Validators.min(0)]));
+  stitchesGold= new FormControl(null, Validators.compose([Validators.pattern("^[0-9]*$"), Validators.min(0)]));
+  stitchesTex = new FormControl(null, Validators.compose([Validators.pattern("^[0-9]*$"), Validators.min(0)]));
 
   name = new FormControl(null);
   dueDate = new FormControl(null);

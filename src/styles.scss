@@ -148,6 +148,11 @@ body {
 .btn {
   width: 49%;
 }
+.btn33 {
+  width: 31%;
+  margin-right: 0.5%;
+  margin-left: 0.5%;
+}
 
 html {
   overflow: scroll;
@@ -196,4 +201,10 @@ html {
   .mat-dialog-content {
     height: 700px;
   }
+}
+
+mat-expansion-panel-header {
+  .mat-content {
+    overflow: visible !important;
+  } 
 }

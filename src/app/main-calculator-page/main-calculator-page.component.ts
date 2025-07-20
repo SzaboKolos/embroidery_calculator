@@ -17,7 +17,7 @@ import { UpdatesDialogComponent } from '../updates-dialog/updates-dialog.compone
 })
 export class MainCalculatorPageComponent {
   isBetaVersion = true;
-  version = '3.2.40'
+  version = '3.2.41'
   settingsOpenState = false;
   category = 0;
   link = 'https://www.youtube.com/watch?v=Y1TlT1sbM8E&t=18s' //https://www.youtube.com/watch?v=dQw4w9WgXcQ
@@ -72,15 +72,18 @@ export class MainCalculatorPageComponent {
       }
     );
   }
+
   onValChange(val: number) {
     if (this.category != val) {
       this.category = val;
       CalculatorService.setCategory(this.category);
     }
   }
+
   addToBasket(event: BasketItem) {
     this.basket.addToBasket(event);
   }
+
   openBasketDialog() {
     this.dialog.open(BasketDialogComponent,
       {
@@ -93,12 +96,14 @@ export class MainCalculatorPageComponent {
         }
       });
   }
+
   getTheme(theme?: string): boolean {
     if (localStorage.getItem('theme') == theme) {
       return true;
     }
     return false;
   }
+
   setTheme(theme?: string) {
     if (theme == null){
       localStorage.removeItem('theme');
@@ -106,6 +111,7 @@ export class MainCalculatorPageComponent {
     }
     localStorage.setItem('theme', theme);
   }
+
   changeTheme() {
     if (this.getTheme()) {
       this.setTheme('cat');

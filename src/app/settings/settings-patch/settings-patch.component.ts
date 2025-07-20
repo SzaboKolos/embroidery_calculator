@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { CalculatorService } from 'src/app/services/calculator-service';
 import { PricesDTO } from 'src/app/models/prices-dto';
+import { MatDialog } from '@angular/material/dialog';
+import { UpdatesDialogComponent } from 'src/app/updates-dialog/updates-dialog.component';
 
 
 @Component({
@@ -21,7 +23,7 @@ export class SettingsPatchComponent {
   multiplier;
   multiplierExt;
 
-  constructor(private calculatorService: CalculatorService)
+  constructor(private calculatorService: CalculatorService, private dialog: MatDialog)
   {
       this.ironPrice = CalculatorService.getIronPrice();
 
@@ -68,6 +70,7 @@ export class SettingsPatchComponent {
       CalculatorService.setPricesByDTO(pricesDTO);
     }
   }
+
   reset(){
     let pricesDTO: PricesDTO = {
       ironPrice: 50,
@@ -93,6 +96,17 @@ export class SettingsPatchComponent {
     this.priceMultiplierExternal.setValue(pricesDTO.externalMultiplier);
 
     CalculatorService.setPricesByDTO(pricesDTO);
+  }
+
+  openUpdates() {
+    this.dialog.open(UpdatesDialogComponent,
+            {
+              //minHeight: 'auto',
+              height: 'auto',
+              width: '100%',
+              panelClass: 'basket-panel',
+              data: {}
+            });
   }
 
 }

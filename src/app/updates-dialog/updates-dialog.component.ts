@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 
 const UPDATES = [
+  {date: '2025-07-20', version: '3.2.41-BETA', content: 'Beállítások UI refaktorálása, frissítések manuális megnyitása gomb bevezetése. Readme deploy menetére.'},
   {date: '2025-07-14', version: '3.2.40-BETA', content: 'Legújabb frissítés kiemelése. Frissítési dátum megjelenítése.'},
   {date: '2025-07-14', version: '3.2.39-BETA', content: 'A darabár nettó érték helyet bruttó értéket mutat a számoló füleken. Apró megjelenési módosítások.'},
   {date: '2025-03-14', version: '3.2.38-BETA', content: 'Felvasalható anyag ár beleírása a számítási függvénybe.'},
@@ -21,7 +22,7 @@ export class UpdatesDialogComponent {
     public dialogRef: MatDialogRef<UpdatesDialogComponent>,
     
   ) {
-    this.updates = UPDATES
+    this.updates = UPDATES;
   }
 
   close() {

@@ -47,3 +47,13 @@ body{
   width: 6px;
 }
 
+.expansionPanelClosed {
+  width: 72px;
+  mat-panel-description {
+    display: none;
+  }
+}
+
+.expansionPanelOpened {
+  width: 75%;
+}

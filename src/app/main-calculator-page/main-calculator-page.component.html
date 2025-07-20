@@ -20,9 +20,6 @@
               <!-- <mat-tab label="Más.."> <other-type-page></other-type-page> </mat-tab> -->
             </mat-tab-group>
           </mat-card-content>
-          <mat-card-actions>
-      
-          </mat-card-actions>
         </article>
         <article class="d-none d-lg-block col-lg-4" style="padding: 10px; min-width: 440px !important;">
           <mat-card class="basket">
@@ -34,9 +31,9 @@
 
     </mat-card>
   <mat-expansion-panel hideToggle
-     class="col-lg-8 col-md-12"
-     (opened)="settingsOpenState = true"
-     (closed)="settingsOpenState = false"
+  (opened)="settingsOpenState = true"
+  (closed)="settingsOpenState = false"
+  [class]="settingsOpenState === true ? 'expansionPanelOpen' : 'expansionPanelClosed'"
   style="margin-top: 0.5%; z-index: 1;">
 
   <mat-expansion-panel-header>
@@ -44,7 +41,7 @@
       <mat-icon aria-hidden="false" fontIcon="settings"></mat-icon>
     </mat-panel-title>
     <mat-panel-description>
-      Számítási beállítások
+      {{settingsOpenState == true ? 'Beállítások' : ''}}
     </mat-panel-description>
   </mat-expansion-panel-header>
   <settings-patch></settings-patch>
